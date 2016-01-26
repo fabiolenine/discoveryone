@@ -2,10 +2,13 @@ var express = require('express');
 var app     = express();
 var http    = require('http').Server(app);
 var io      = require('socket.io')(http);
+var engines = require('consolidate');
 var socket  = require('./public/javascripts/volatilechat/socket.js');
 
 app.use(express.static('public'));
 app.set('views','views/volatilechat');
+app.engine('html', engines.mustache);
+app.set('view engine', 'html');
 
 app.get('/', function(req, res){
     var language = req.headers["accept-language"];
