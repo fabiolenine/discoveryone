@@ -4,7 +4,7 @@ var http    = require('http').Server(app);
 var io      = require('socket.io')(http);
 var socket  = require('./public/javascripts/volatilechat/socket.js');
 
-app.use(app.static('../views/volatilechat'));
+app.use(express.static('views/volatilechat'));
 
 app.get('/', function(req, res){
     var language = req.headers["accept-language"];
