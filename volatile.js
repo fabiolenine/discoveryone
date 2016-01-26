@@ -1,14 +1,16 @@
 var app     = require('express')();
 var http    = require('http').Server(app);
 var io      = require('socket.io')(http);
-var socket  = require('./js/socket.js')
+var socket  = require('.public/javascripts/volatilechat/socket.js')
+
+app.use(express.static('../views/volatilechat'));
 
 app.get('/', function(req, res){
     var language = req.headers["accept-language"];
     
     switch (language) {
             case "pt-br":   // Portuguese
-                res.sendFile(__dirname + '/index_ptbr.html');
+                res.sendFile('index_ptbr.html');
                 break;
 //            case "fr":      // French
 //                res.sendFile(__dirname + '/index_fr.html');
@@ -41,7 +43,7 @@ app.get('/', function(req, res){
 //                res.sendFile(__dirname + '/index_zhhant.html');
 //                break;
             default:        // English
-                res.sendFile(__dirname + '/index_en.html');            
+                res.sendFile('index_en.html');            
     };
     
 });
