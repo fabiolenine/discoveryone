@@ -1,7 +1,7 @@
 var app     = require('express')();
 var http    = require('http').Server(app);
 var io      = require('socket.io')(http);
-var socket  = require('.public/javascripts/volatilechat/socket.js')
+var socket  = require('./public/javascripts/volatilechat/socket.js')
 
 app.use(express.static('../views/volatilechat'));
 
