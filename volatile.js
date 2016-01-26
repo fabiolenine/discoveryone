@@ -12,7 +12,7 @@ app.get('/', function(req, res){
     
     switch (language) {
             case "pt-br":   // Portuguese
-                res.sendFile('index_ptbr.html');
+                res.render('index_ptbr.html');
                 break;
 //            case "fr":      // French
 //                res.sendFile(__dirname + '/index_fr.html');
@@ -45,7 +45,7 @@ app.get('/', function(req, res){
 //                res.sendFile(__dirname + '/index_zhhant.html');
 //                break;
             default:        // English
-                res.sendFile('index_en.html');            
+                res.render('index_en.html');            
     };
     
 });
