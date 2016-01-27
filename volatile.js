@@ -7,7 +7,7 @@ var socket  = require('./public/javascripts/volatilechat/socket.js');
 
 app.use(express.static('public'));
 app.set('views','views/volatilechat');
-app.engine('html', engines.swig);
+app.engine('html', engines);
 app.set('view engine', 'html');
 
 app.get('/', function(req, res){
