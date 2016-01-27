@@ -6,8 +6,8 @@ var engines = require('consolidate');
 var socket  = require('./public/javascripts/volatilechat/socket.js');
 
 app.use(express.static('public'));
-app.set('views','views/volatilechat');
 app.set('view engine','ejs');
+app.set('views','views/volatilechat');
 
 app.get('/', function(req, res){
     var language = req.headers["accept-language"];
@@ -50,6 +50,15 @@ app.get('/', function(req, res){
                 res.render('index_en.ejs');            
     };
     
+});
+
+app.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
+
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
 });
 
 io.on('connection', socket);
