@@ -10,7 +10,7 @@ var appVolatilechat = express();
 app.use(vhost('volatilechat.com',appVolatilechat));
 
 http.createServer(app).listen(80);
-https.createServer(options, app).listen(443);
+//https.createServer(options, app).listen(443);
 
 app.use(express.static('public'));
 app.set('view engine','ejs');
