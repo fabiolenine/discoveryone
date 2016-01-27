@@ -1,15 +1,29 @@
 var express = require('express');
-var app     = express();
 var http    = require('http').Server(app);
 var io      = require('socket.io')(http);
-var engines = require('consolidate');
+var vhost   = require('vhost');
 var socket  = require('./public/javascripts/volatilechat/socket.js');
+
+var app                = express();
+var appVolatilechat    = express();
+
+app.use(vhost('volatilechat.com',appVolatilechat));
+
+http.createServer(app).listen(80);
 
 app.use(express.static('public'));
 app.set('view engine','ejs');
-app.set('views','views/volatilechat');
+app.set('views','views/lenines');
+
+appVolatilechat.use(express.static('public'));
+appVolatilechat.set('view engine','ejs');
+appVolatilechat.set('views','views/volatilechat');
 
 app.get('/', function(req, res){
+    res.render('index.ejs');
+});
+
+appVolatilechat.get('/', function(req, res){
     var language = req.headers["accept-language"];
     
     switch (language) {
@@ -61,8 +75,14 @@ app.use(function(err, req, res, next) {
   res.status(500).send('Something broke!');
 });
 
+appVolatilechat.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
+
+appVolatilechat.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 io.on('connection', socket);
 
-http.listen(80,3000, function(){
-  console.log('Ouvindo nas portas *: 80 e 3000');
-});
