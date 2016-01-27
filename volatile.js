@@ -1,16 +1,16 @@
 var express = require('express');
-var app                = express();
-
-var http    = require('http').Server(app);
+var http    = require('http')
 var io      = require('socket.io')(http);
 var vhost   = require('vhost');
 var socket  = require('./public/javascripts/volatilechat/socket.js');
 
-var appVolatilechat    = express();
+var app             = express();
+var appVolatilechat = express();
 
 app.use(vhost('volatilechat.com',appVolatilechat));
 
 http.createServer(app).listen(80);
+https.createServer(options, app).listen(443);
 
 app.use(express.static('public'));
 app.set('view engine','ejs');
