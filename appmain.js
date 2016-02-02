@@ -68,7 +68,7 @@ appVolatilechat.get('/', function(req, res){
 });
 
 app.use(function(req, res, next) {
-  res.status(404).rend('404.ejs');
+  res.status(404).render('404.ejs');
 });
 
 app.use(function(err, req, res, next) {
