@@ -1,0 +1,57 @@
+body {
+    padding-top: 60px;
+    background-color: #eee;
+    color: white;
+    position: absolute;
+  }
+
+#irbegin {
+    right: 0; 
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto; 
+    z-index: -100;
+    position: fixed;
+}
+
+#glass {
+    background-color:#fff;
+    margin:0 auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+.btn {
+   outline:0;
+   border:none;
+   border-top:none;
+   border-bottom:none;
+   border-left:none;
+   border-right:none;
+   box-shadow:inset 2px -3px rgba(0,0,0,0.15);
+  }
+  
+  .btn:focus {
+   outline:0;
+   -webkit-outline:0;
+   -moz-outline:0;
+  }
+
+  #endereco, #redesocial {
+    color: white;
+  }
+
+  #lembre {
+    color: white;
+  }
+
+  img {
+    padding-top: 10px;
+  }
+
+  .alert {
+    margin-top: 20px;
+    display: none;
+  }
