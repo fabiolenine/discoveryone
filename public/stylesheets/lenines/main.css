@@ -393,6 +393,14 @@ ul.sub-menu {
   background-size: contain;
 }
 
+#footer-email {
+  padding-bottom: 10px;
+  background-image: url(https://storage.googleapis.com/discoveryone/public/images/lenines/home/emailfooter.png);
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-size: contain;
+}
+
 #footer h1{
   margin-bottom: 65px;
   margin-top: 36px;

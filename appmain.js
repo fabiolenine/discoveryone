@@ -12,21 +12,22 @@ app.use(vhost('volatilechat.com',appVolatilechat));
 http.createServer(app).listen(80);
 //https.createServer(options, app).listen(443);
 
-app.use(express.static('public'));
+app.use(express.static('public/lenines'));
 app.set('view engine','ejs');
 app.set('views','views/lenines');
 
-appVolatilechat.use(express.static('public'));
+appVolatilechat.use(express.static('public/lenines'));
 appVolatilechat.set('view engine','ejs');
 appVolatilechat.set('views','views/volatilechat');
 
 app.get('/', function(req, res){
+    console.log('Passei por aqui: '+__dirname);
     res.render('index.ejs');
 });
 
 appVolatilechat.get('/', function(req, res){
     var language = req.headers["accept-language"];
-    
+    console.log('Passei por aqui: '+__dirname);
     switch (language) {
             case "pt-br":   // Portuguese
                 res.render('index_ptbr.ejs');
