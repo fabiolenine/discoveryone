@@ -7,9 +7,9 @@ var socket  = require('./public/javascripts/volatilechat/socket.js');
 var app             = express();
 var appVolatilechat = express();
 
-app.use(vhost('volatilechat.com',appVolatilechat));
+app.use(vhost('*.volatilechat.com',appVolatilechat));
 
-http.createServer(app).listen(80);
+app.listen(80);
 //https.createServer(options, app).listen(443);
 
 app.use(express.static('public/lenines'));
