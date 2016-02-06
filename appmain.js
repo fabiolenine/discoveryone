@@ -21,13 +21,13 @@ appVolatilechat.set('view engine','ejs');
 appVolatilechat.set('views','views/volatilechat');
 
 app.get('/', function(req, res){
-    console.log('Passei por aqui: '+__dirname);
+    console.log('Passei por aqui lenines.com/: '+__dirname);
     res.render('index.ejs');
 });
 
 appVolatilechat.get('/', function(req, res){
     var language = req.headers["accept-language"];
-    console.log('Passei por aqui: '+__dirname);
+    console.log('Passei por aqui volatilechat/: '+__dirname);
     switch (language) {
             case "pt-br":   // Portuguese
                 res.render('index_ptbr.ejs');
