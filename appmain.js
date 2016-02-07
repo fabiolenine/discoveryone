@@ -76,7 +76,7 @@ appVolatilechat.get('/', function(req, res){
 });
 
 appSequence.get('/', function(req, res){
-    res.sender('Olá mundo!');
+    res.send('Olá mundo!');
 });
 
 app.use(function(req, res, next) {
