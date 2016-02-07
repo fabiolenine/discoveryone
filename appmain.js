@@ -4,30 +4,37 @@ var io      = require('socket.io')(http);
 var vhost   = require('vhost');
 var socket  = require('./public/javascripts/volatilechat/socket.js');
 
+// Roteamento de domínio e sub-domínios
 var app             = express();
 var appVolatilechat = express();
+var appSequence     = express();
 
 app.use(vhost('*.volatilechat.com',appVolatilechat));
+app.use(vhost('sequence.lenines.com',appSequence));
 
 app.listen(80);
 //https.createServer(options, app).listen(443);
 
+// Parametrização dos caminhos estaticos public e de views
 app.use(express.static('public/lenines'));
 app.set('view engine','ejs');
 app.set('views','views/lenines');
 
-appVolatilechat.use(express.static('public/lenines'));
+appVolatilechat.use(express.static('public/volatilechat'));
 appVolatilechat.set('view engine','ejs');
 appVolatilechat.set('views','views/volatilechat');
 
+appSequence.use(express.static('public/sequence'));
+appSequence.set('view engine','ejs');
+appSequence.set('views','views/sequence');
+
+// Roteamento do Rest
 app.get('/', function(req, res){
-    console.log('Passei por aqui lenines.com/: '+__dirname);
     res.render('index.ejs');
 });
 
 appVolatilechat.get('/', function(req, res){
     var language = req.headers["accept-language"];
-    console.log('Passei por aqui volatilechat/: '+__dirname);
     switch (language) {
             case "pt-br":   // Portuguese
                 res.render('index_ptbr.ejs');
@@ -68,6 +75,10 @@ appVolatilechat.get('/', function(req, res){
     
 });
 
+appSequence.get('/', function(req, res){
+    res.sender('Olá mundo!');
+});
+
 app.use(function(req, res, next) {
   res.status(404).render('404.ejs');
 });
@@ -82,6 +93,15 @@ appVolatilechat.use(function(req, res, next) {
 });
 
 appVolatilechat.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+appSequence.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
+
+appSequence.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
