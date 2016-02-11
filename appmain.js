@@ -5,12 +5,16 @@ var vhost   = require('vhost');
 var socket  = require('./public/javascripts/volatilechat/socket.js');
 
 // Roteamento de domínio e sub-domínios
-var app             = express();
-var appVolatilechat = express();
-var appSequence     = express();
+var app                         = express();
+var appVolatilechat             = express();
+var appSequence                 = express();
+var appCartoriomoreiradedeusNot = express();
+var appCartoriomoreiradedeusCom = express();
 
 app.use(vhost('*.volatilechat.com',appVolatilechat));
 app.use(vhost('sequence.lenines.com',appSequence));
+app.use(vhost('*.cartoriomoreiradedeus.com.br',appCartoriomoreiradedeusCom));
+app.use(vhost('*.cartoriomoreiradedeus.not.br',appCartoriomoreiradedeusNot));
 
 app.listen(80);
 //https.createServer(options, app).listen(443);
@@ -27,6 +31,14 @@ appVolatilechat.set('views','views/volatilechat');
 appSequence.use(express.static('public/sequence'));
 appSequence.set('view engine','ejs');
 appSequence.set('views','views/sequence');
+
+appCartoriomoreiradedeusCom.use(express.static('public/cartoriomoreiradedeus'));
+appCartoriomoreiradedeusCom.set('view engine','ejs');
+appCartoriomoreiradedeusCom.set('views','views/cartoriomoreiradedeus');
+
+appCartoriomoreiradedeusNot.use(express.static('public/cartoriomoreiradedeus'));
+appCartoriomoreiradedeusNot.set('view engine','ejs');
+appCartoriomoreiradedeusNot.set('views','views/cartoriomoreiradedeus');
 
 // Roteamento do Rest
 app.get('/', function(req, res){
@@ -79,6 +91,14 @@ appSequence.get('/', function(req, res){
     res.send('Olá mundo!');
 });
 
+appCartoriomoreiradedeusCom.get('/', function(req, res){
+    res.send('Olá mundo!');
+});
+
+appCartoriomoreiradedeusNot.get('/', function(req, res){
+    res.send('Olá mundo!');
+});
+
 app.use(function(req, res, next) {
   res.status(404).render('404.ejs');
 });
@@ -106,5 +126,22 @@ appSequence.use(function(err, req, res, next) {
   res.status(500).send('Something broke!');
 });
 
-io.on('connection', socket);
+appCartoriomoreiradedeusCom.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
 
+appCartoriomoreiradedeusCom.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+appCartoriomoreiradedeusNot.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
+
+appCartoriomoreiradedeusNot.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+io.on('connection', socket);
