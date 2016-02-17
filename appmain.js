@@ -10,11 +10,13 @@ var appVolatilechat             = express();
 var appSequence                 = express();
 var appCartoriomoreiradedeusNot = express();
 var appCartoriomoreiradedeusCom = express();
+var appMoreiradedeusNot         = express();
 
 app.use(vhost('*.volatilechat.com',appVolatilechat));
 app.use(vhost('sequence.lenines.com',appSequence));
 app.use(vhost('*.cartoriomoreiradedeus.com.br',appCartoriomoreiradedeusCom));
 app.use(vhost('*.cartoriomoreiradedeus.not.br',appCartoriomoreiradedeusNot));
+app.use(vhost('*.moreiradedeus.not.br',appMoreiradedeusNot));
 
 app.listen(80);
 //https.createServer(options, app).listen(443);
@@ -32,13 +34,17 @@ appSequence.use(express.static('public/sequence'));
 appSequence.set('view engine','ejs');
 appSequence.set('views','views/sequence');
 
-appCartoriomoreiradedeusCom.use(express.static('public/cartoriomoreiradedeus'));
+appCartoriomoreiradedeusCom.use(express.static('public/moreiradedeus'));
 appCartoriomoreiradedeusCom.set('view engine','ejs');
-appCartoriomoreiradedeusCom.set('views','views/cartoriomoreiradedeus');
+appCartoriomoreiradedeusCom.set('views','views/moreiradedeus');
 
-appCartoriomoreiradedeusNot.use(express.static('public/cartoriomoreiradedeus'));
+appCartoriomoreiradedeusNot.use(express.static('public/moreiradedeus'));
 appCartoriomoreiradedeusNot.set('view engine','ejs');
-appCartoriomoreiradedeusNot.set('views','views/cartoriomoreiradedeus');
+appCartoriomoreiradedeusNot.set('views','views/moreiradedeus');
+
+appMoreiradedeusNot.use(express.static('public/moreiradedeus'));
+appMoreiradedeusNot.set('view engine','ejs');
+appMoreiradedeusNot.set('views','views/moreiradedeus');
 
 // Roteamento do Rest
 app.get('/', function(req, res){
@@ -92,11 +98,15 @@ appSequence.get('/', function(req, res){
 });
 
 appCartoriomoreiradedeusCom.get('/', function(req, res){
-    res.send('Olá mundo!');
+    res.render('index.ejs');
 });
 
 appCartoriomoreiradedeusNot.get('/', function(req, res){
-    res.send('Olá mundo!');
+    res.render('index.ejs');
+});
+
+appMoreiradedeusNot.get('/', function(req, res){
+    res.render('index.ejs');
 });
 
 app.use(function(req, res, next) {
@@ -140,6 +150,15 @@ appCartoriomoreiradedeusNot.use(function(req, res, next) {
 });
 
 appCartoriomoreiradedeusNot.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+appMoreiradedeusNot.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
+
+appMoreiradedeusNot.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
