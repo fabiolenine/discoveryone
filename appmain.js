@@ -12,7 +12,8 @@ var appCartoriomoreiradedeusNot = express();
 var appCartoriomoreiradedeusCom = express();
 var appMoreiradedeusNot         = express();
 
-app.use(vhost('*.volatilechat.com',appVolatilechat));
+app.use(vhost('www.volatilechat.com',appVolatilechat));
+app.use(vhost('volatilechat.com',appVolatilechat));
 app.use(vhost('sequence.lenines.com',appSequence));
 app.use(vhost('www.cartoriomoreiradedeus.com.br',appCartoriomoreiradedeusCom));
 app.use(vhost('www.cartoriomoreiradedeus.not.br',appCartoriomoreiradedeusNot));
