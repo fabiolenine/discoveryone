@@ -102,14 +102,17 @@ appSequence.get('/', function(req, res){
 });
 
 appCartoriomoreiradedeusCom.get('/', function(req, res){
+    res.setHeader('Cache-Control', 'max-age=604800'); 
     res.render('index.ejs');
 });
 
 appCartoriomoreiradedeusNot.get('/', function(req, res){
+    res.setHeader('Cache-Control', 'max-age=604800');
     res.render('index.ejs');
 });
 
 appMoreiradedeusNot.get('/', function(req, res){
+    res.setHeader('Cache-Control', 'max-age=604800');    
     res.render('index.ejs');
 });
 
