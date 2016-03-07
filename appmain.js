@@ -11,6 +11,7 @@ var appSequence                 = express();
 var appCartoriomoreiradedeusNot = express();
 var appCartoriomoreiradedeusCom = express();
 var appMoreiradedeusNot         = express();
+var appMoreiradedeusCom         = express();
 
 app.use(vhost('www.volatilechat.com',appVolatilechat));
 app.use(vhost('volatilechat.com',appVolatilechat));
@@ -18,11 +19,14 @@ app.use(vhost('sequence.lenines.com',appSequence));
 app.use(vhost('www.cartoriomoreiradedeus.com.br',appCartoriomoreiradedeusCom));
 app.use(vhost('www.cartoriomoreiradedeus.not.br',appCartoriomoreiradedeusNot));
 app.use(vhost('www.moreiradedeus.not.br',appMoreiradedeusNot));
+app.use(vhost('www.moreiradedeus.com.br',appMoreiradedeusCom));
 app.use(vhost('cartoriomoreiradedeus.com.br',appCartoriomoreiradedeusCom));
 app.use(vhost('cartoriomoreiradedeus.not.br',appCartoriomoreiradedeusNot));
 app.use(vhost('moreiradedeus.not.br',appMoreiradedeusNot));
+app.use(vhost('moreiradedeus.com.br',appMoreiradedeusCom));
 
-app.listen(80);
+app.listen(80); 
+
 //https.createServer(options, app).listen(443);
 
 // Parametrização dos caminhos estaticos public e de views
@@ -49,6 +53,10 @@ appCartoriomoreiradedeusNot.set('views','views/moreiradedeus');
 appMoreiradedeusNot.use(express.static('public/moreiradedeus'));
 appMoreiradedeusNot.set('view engine','ejs');
 appMoreiradedeusNot.set('views','views/moreiradedeus');
+
+appMoreiradedeusCom.use(express.static('public/moreiradedeus'));
+appMoreiradedeusCom.set('view engine','ejs');
+appMoreiradedeusCom.set('views','views/moreiradedeus');
 
 // Roteamento do Rest
 app.get('/', function(req, res){
@@ -94,30 +102,30 @@ appVolatilechat.get('/', function(req, res){
             default:        // English
                 res.render('index_en.ejs');            
     };
-    
 });
 
 appSequence.get('/', function(req, res){
     res.send('Olá mundo!');
 });
 
-appCartoriomoreiradedeusCom.get('/', function(req, res){
-    res.setHeader('Cache-Control', 'max-age=604800'); 
+appCartoriomoreiradedeusCom.get('/', function(req, res){ 
     res.render('index.ejs');
 });
 
 appCartoriomoreiradedeusNot.get('/', function(req, res){
-    res.setHeader('Cache-Control', 'max-age=604800');
     res.render('index.ejs');
 });
 
 appMoreiradedeusNot.get('/', function(req, res){
-    res.setHeader('Cache-Control', 'max-age=604800');    
+    res.render('index.ejs');
+});
+
+appMoreiradedeusCom.get('/', function(req, res){
     res.render('index.ejs');
 });
 
 app.use(function(req, res, next) {
-  res.status(404).render('404.ejs');
+  res.status(404).render('Sorry cant find that!');
 });
 
 app.use(function(err, req, res, next) {
@@ -165,7 +173,16 @@ appMoreiradedeusNot.use(function(req, res, next) {
   res.status(404).send('Sorry cant find that!');
 });
 
+appMoreiradedeusCom.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
+
 appMoreiradedeusNot.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+appMoreiradedeusCom.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
