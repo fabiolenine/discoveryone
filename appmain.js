@@ -150,6 +150,10 @@ appMoreiradedeusCom.get('/servicos/testamentopublico(.html)?', function(req, res
     res.render('servicos/testamentopublico.ejs');
 });
 
+appMoreiradedeusCom.get('/servicos/separacaodivorcio(.html)?', function(req, res){
+    res.render('servicos/separacaodivorcio.ejs');
+});
+
 // ------------------------------------------------------------------
 
 app.use(function(req, res, next) {
