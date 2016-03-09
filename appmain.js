@@ -120,6 +120,8 @@ appMoreiradedeusNot.get('/', function(req, res){
     res.render('index.ejs');
 });
 
+// ------------------------------------------------------------------
+
 appMoreiradedeusCom.get('/', function(req, res){
     res.render('index.ejs');
 });
@@ -131,6 +133,12 @@ appMoreiradedeusCom.get('/servicos(.html)?', function(req, res){
 appMoreiradedeusCom.get('/servicos/autenticacao(.html)?', function(req, res){
     res.render('servicos/autenticacao.ejs');
 });
+
+appMoreiradedeusCom.get('/servicos/certificadodigital(.html)?', function(req, res){
+    res.render('servicos/certificadodigital.ejs');
+});
+
+// ------------------------------------------------------------------
 
 app.use(function(req, res, next) {
   res.status(404).render('Sorry cant find that!');
