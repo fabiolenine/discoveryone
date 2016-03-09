@@ -154,6 +154,10 @@ appMoreiradedeusCom.get('/servicos/separacaodivorcio(.html)?', function(req, res
     res.render('servicos/separacaodivorcio.ejs');
 });
 
+appMoreiradedeusCom.get('/servicos/reconhecimentodefirma(.html)?', function(req, res){
+    res.render('servicos/reconhecimentodefirma.ejs');
+});
+
 // ------------------------------------------------------------------
 
 app.use(function(req, res, next) {
