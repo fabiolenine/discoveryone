@@ -162,6 +162,22 @@ appMoreiradedeusCom.get('/servicos/procuracaopublica(.html)?', function(req, res
     res.render('servicos/procuracaopublica.ejs');
 });
 
+appMoreiradedeusCom.get('/servicos/inventarioepartilha(.html)?', function(req, res){
+    res.render('servicos/inventarioepartilha.ejs');
+});
+
+appMoreiradedeusCom.get('/servicos/atanotarial(.html)?', function(req, res){
+    res.render('servicos/atanotarial.ejs');
+});
+
+appMoreiradedeusCom.get('/servicos/duteletronico(.html)?', function(req, res){
+    res.render('servicos/duteletronico.ejs');
+});
+
+appMoreiradedeusCom.get('/servicos/escriturapublica(.html)?', function(req, res){
+    res.render('servicos/escriturapublica.ejs');
+});
+
 // ------------------------------------------------------------------
 
 app.use(function(req, res, next) {
