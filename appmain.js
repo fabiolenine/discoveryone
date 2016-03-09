@@ -158,6 +158,10 @@ appMoreiradedeusCom.get('/servicos/reconhecimentodefirma(.html)?', function(req,
     res.render('servicos/reconhecimentodefirma.ejs');
 });
 
+appMoreiradedeusCom.get('/servicos/procuracaopublica(.html)?', function(req, res){
+    res.render('servicos/procuracaopublica.ejs');
+});
+
 // ------------------------------------------------------------------
 
 app.use(function(req, res, next) {
