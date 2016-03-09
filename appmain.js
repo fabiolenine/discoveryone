@@ -124,12 +124,12 @@ appMoreiradedeusCom.get('/', function(req, res){
     res.render('index.ejs');
 });
 
-appMoreiradedeusCom.get('/servicos', function(req, res){
+appMoreiradedeusCom.get('/servicos(.html)?', function(req, res){
     res.render('servicos.ejs');
 });
 
-appMoreiradedeusCom.get('/servicos/autenticacao', function(req, res){
-    res.sendfile('/servicos/autenticacao.html');
+appMoreiradedeusCom.get('/servicos/autenticacao(.html)?', function(req, res){
+    res.sendfile('servicos/autenticacao.ejs');
 });
 
 app.use(function(req, res, next) {
