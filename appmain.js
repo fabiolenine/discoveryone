@@ -142,6 +142,10 @@ appMoreiradedeusCom.get('/servicos/conciliacao(.html)?', function(req, res){
     res.render('servicos/conciliacao.ejs');
 });
 
+appMoreiradedeusCom.get('/servicos/uniaoestavel(.html)?', function(req, res){
+    res.render('servicos/uniaoestavel.ejs');
+});
+
 // ------------------------------------------------------------------
 
 app.use(function(req, res, next) {
