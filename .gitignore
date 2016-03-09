@@ -4,4 +4,6 @@ views/volatilechat/
 
 package.json
 
-views/moreiradedeus/index.ejs
+node_modules/
+
+views/moreiradedeus/

@@ -124,6 +124,10 @@ appMoreiradedeusCom.get('/', function(req, res){
     res.render('index.ejs');
 });
 
+appMoreiradedeusCom.get('/servicos', function(req, res){
+    res.sendfile('servicos.html');
+})
+
 app.use(function(req, res, next) {
   res.status(404).render('Sorry cant find that!');
 });
