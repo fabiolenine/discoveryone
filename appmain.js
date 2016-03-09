@@ -125,7 +125,7 @@ appMoreiradedeusCom.get('/', function(req, res){
 });
 
 appMoreiradedeusCom.get('/servicos', function(req, res){
-    res.sendfile('servicos.html');
+    res.render('servicos.ejs');
 })
 
 app.use(function(req, res, next) {
