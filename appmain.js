@@ -129,7 +129,7 @@ appMoreiradedeusCom.get('/servicos(.html)?', function(req, res){
 });
 
 appMoreiradedeusCom.get('/servicos/autenticacao(.html)?', function(req, res){
-    res.sendfile('servicos/autenticacao.ejs');
+    res.render('servicos/autenticacao.ejs');
 });
 
 app.use(function(req, res, next) {
