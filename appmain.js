@@ -126,7 +126,11 @@ appMoreiradedeusCom.get('/', function(req, res){
 
 appMoreiradedeusCom.get('/servicos', function(req, res){
     res.render('servicos.ejs');
-})
+});
+
+appMoreiradedeusCom.get('/servicos/autenticacao', function(req, res){
+    res.render('autenticacao.ejs');
+});
 
 app.use(function(req, res, next) {
   res.status(404).render('Sorry cant find that!');
