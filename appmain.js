@@ -138,6 +138,10 @@ appMoreiradedeusCom.get('/servicos/certificadodigital(.html)?', function(req, re
     res.render('servicos/certificadodigital.ejs');
 });
 
+appMoreiradedeusCom.get('/servicos/conciliacao(.html)?', function(req, res){
+    res.render('servicos/conciliacao.ejs');
+});
+
 // ------------------------------------------------------------------
 
 app.use(function(req, res, next) {
