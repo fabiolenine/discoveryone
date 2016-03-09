@@ -146,6 +146,10 @@ appMoreiradedeusCom.get('/servicos/uniaoestavel(.html)?', function(req, res){
     res.render('servicos/uniaoestavel.ejs');
 });
 
+appMoreiradedeusCom.get('/servicos/testamentopublico(.html)?', function(req, res){
+    res.render('servicos/testamentopublico.ejs');
+});
+
 // ------------------------------------------------------------------
 
 app.use(function(req, res, next) {
