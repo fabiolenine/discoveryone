@@ -10,15 +10,9 @@ var appVolatilechat             = express();
 var appSequence                 = express();
 var appMoreiradedeus            = express();
 
-//var appCartoriomoreiradedeusNot = express();
-//var appCartoriomoreiradedeusCom = express();
-//var appMoreiradedeusNot         = express();
-//var appMoreiradedeusCom         = express();
-
 app.use(vhost('www.volatilechat.com',appVolatilechat));
 app.use(vhost('volatilechat.com',appVolatilechat));
 app.use(vhost('sequence.lenines.com',appSequence));
-
 app.use(vhost('www.cartoriomoreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('www.cartoriomoreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('www.moreiradedeus.com.br',appMoreiradedeus));
@@ -27,15 +21,6 @@ app.use(vhost('cartoriomoreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('cartoriomoreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('moreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('moreiradedeus.not.br',appMoreiradedeus));
-
-//app.use(vhost('www.cartoriomoreiradedeus.com.br',appCartoriomoreiradedeusCom));
-//app.use(vhost('www.cartoriomoreiradedeus.not.br',appCartoriomoreiradedeusNot));
-//app.use(vhost('www.moreiradedeus.not.br',appMoreiradedeusNot));
-//app.use(vhost('www.moreiradedeus.com.br',appMoreiradedeusCom));
-//app.use(vhost('cartoriomoreiradedeus.com.br',appCartoriomoreiradedeusCom));
-//app.use(vhost('cartoriomoreiradedeus.not.br',appCartoriomoreiradedeusNot));
-//app.use(vhost('moreiradedeus.not.br',appMoreiradedeusNot));
-//app.use(vhost('moreiradedeus.com.br',appMoreiradedeusCom));
 
 app.listen(80); 
 
@@ -53,22 +38,6 @@ appVolatilechat.set('views','views/volatilechat');
 appSequence.use(express.static('public/sequence'));
 appSequence.set('view engine','ejs');
 appSequence.set('views','views/sequence');
-
-//appCartoriomoreiradedeusCom.use(express.static('public/moreiradedeus'));
-//appCartoriomoreiradedeusCom.set('view engine','ejs');
-//appCartoriomoreiradedeusCom.set('views','views/moreiradedeus');
-
-//appCartoriomoreiradedeusNot.use(express.static('public/moreiradedeus'));
-//appCartoriomoreiradedeusNot.set('view engine','ejs');
-//appCartoriomoreiradedeusNot.set('views','views/moreiradedeus');
-
-//appMoreiradedeusNot.use(express.static('public/moreiradedeus'));
-//appMoreiradedeusNot.set('view engine','ejs');
-//appMoreiradedeusNot.set('views','views/moreiradedeus');
-
-//appMoreiradedeusCom.use(express.static('public/moreiradedeus'));
-//appMoreiradedeusCom.set('view engine','ejs');
-//appMoreiradedeusCom.set('views','views/moreiradedeus');
 
 appMoreiradedeus.use(express.static('public/moreiradedeus'));
 appMoreiradedeus.set('view engine','ejs');
@@ -123,18 +92,6 @@ appVolatilechat.get('/', function(req, res){
 appSequence.get('/', function(req, res){
     res.send('Olá mundo!');
 });
-
-//appCartoriomoreiradedeusCom.get('/', function(req, res){ 
-//    res.render('index.ejs');
-//});
-
-//appCartoriomoreiradedeusNot.get('/', function(req, res){
-//    res.render('index.ejs');
-//});
-
-//appMoreiradedeusNot.get('/', function(req, res){
-//    res.render('index.ejs');
-//});
 
 // ------------------------------------------------------------------
 
@@ -194,6 +151,18 @@ appMoreiradedeus.get('/servicos/escriturapublica(.html)?', function(req, res){
     res.render('servicos/escriturapublica.ejs');
 });
 
+appMoreiradedeus.get('/ocartorio(.html)?', function(req, res){
+    res.render('servicos/ocartorio.ejs');
+});
+
+appMoreiradedeus.get('/produtos(.html)?', function(req, res){
+    res.render('servicos/produtos.ejs');
+});
+
+appMoreiradedeus.get('/reputacao(.html)?', function(req, res){
+    res.render('servicos/reputacao.ejs');
+});
+
 // ------------------------------------------------------------------
 
 app.use(function(req, res, next) {
@@ -223,36 +192,9 @@ appSequence.use(function(err, req, res, next) {
   res.status(500).send('Something broke!');
 });
 
-//appCartoriomoreiradedeusCom.use(function(req, res, next) {
-//  res.status(404).send('Sorry cant find that!');
-//});
-
-//appCartoriomoreiradedeusCom.use(function(err, req, res, next) {
-//  console.error(err.stack);
-//  res.status(500).send('Something broke!');
-//});
-
-//appCartoriomoreiradedeusNot.use(function(req, res, next) {
-//  res.status(404).send('Sorry cant find that!');
-//});
-
-//appCartoriomoreiradedeusNot.use(function(err, req, res, next) {
-//  console.error(err.stack);
-//  res.status(500).send('Something broke!');
-//});
-
-//appMoreiradedeusNot.use(function(req, res, next) {
-//  res.status(404).send('Sorry cant find that!');
-//});
-
 appMoreiradedeus.use(function(req, res, next) {
   res.status(404).send('Sorry cant find that!');
 });
-
-//appMoreiradedeusNot.use(function(err, req, res, next) {
-//  console.error(err.stack);
-//  res.status(500).send('Something broke!');
-//});
 
 appMoreiradedeus.use(function(err, req, res, next) {
   console.error(err.stack);
