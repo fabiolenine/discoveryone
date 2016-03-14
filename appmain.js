@@ -152,15 +152,15 @@ appMoreiradedeus.get('/servicos/escriturapublica(.html)?', function(req, res){
 });
 
 appMoreiradedeus.get('/ocartorio(.html)?', function(req, res){
-    res.render('servicos/ocartorio.ejs');
+    res.render('ocartorio.ejs');
 });
 
 appMoreiradedeus.get('/produtos(.html)?', function(req, res){
-    res.render('servicos/produtos.ejs');
+    res.render('produtos.ejs');
 });
 
 appMoreiradedeus.get('/reputacao(.html)?', function(req, res){
-    res.render('servicos/reputacao.ejs');
+    res.render('reputacao.ejs');
 });
 
 // ------------------------------------------------------------------
