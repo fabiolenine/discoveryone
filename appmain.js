@@ -164,35 +164,35 @@ appMoreiradedeus.get('/reputacao(.html)?', function(req, res){
 });
 
 appMoreiradedeus.get('/sitemap-cartcom.xml', function(req, res){
-    res.download('sitemap-cartcom.xml');
+    res.download('/views/moreiradedeus/sitemap-cartcom.xml');
 });
 
 appMoreiradedeus.get('/sitemap-cartnot.xml', function(req, res){
-    res.download('sitemap-cartnot.xml');
+    res.download('/views/moreiradedeus/sitemap-cartnot.xml');
 });
 
 appMoreiradedeus.get('/sitemap-com.xml', function(req, res){
-    res.download('sitemap-com.xml');
+    res.download('/views/moreiradedeus/sitemap-com.xml');
 });
 
 appMoreiradedeus.get('/sitemap-not.xml', function(req, res){
-    res.download('sitemap-not.xml');
+    res.download('/views/moreiradedeus/sitemap-not.xml');
 });
 
 appMoreiradedeus.get('/sitemap-w3cartcom.xml', function(req, res){
-    res.download('sitemap-w3cartcom.xml');
+    res.download('/views/moreiradedeus/sitemap-w3cartcom.xml');
 });
 
 appMoreiradedeus.get('/sitemap-w3cartnot.xml', function(req, res){
-    res.download('sitemap-w3cartnot.xml');
+    res.download('/views/moreiradedeus/sitemap-w3cartnot.xml');
 });
 
 appMoreiradedeus.get('/sitemap-w3com.xml', function(req, res){
-    res.download('sitemap-w3com.xml');
+    res.download('/views/moreiradedeus/sitemap-w3com.xml');
 });
 
 appMoreiradedeus.get('/sitemap-w3not.xml', function(req, res){
-    res.download('sitemap-w3not.xml');
+    res.download('/views/moreiradedeus/sitemap-w3not.xml');
 });
 // ------------------------------------------------------------------
 
