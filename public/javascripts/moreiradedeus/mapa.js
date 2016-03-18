@@ -1,19 +1,19 @@
 function initialize() {
     
     // Exibir mapa;
-    var myLatlng = new google.maps.LatLng(-8.0631495, -34.87131120000004);
-    var mapOptions = {  zoom: 17,
+    var myLatlng = new google.maps.LatLng(-3.730621, -38.547079);
+    var mapOptions = {  zoom: 19,
                         center: myLatlng,
-                        panControl: false,
+                        panControl: true,
                         
                         // mapTypeId: google.maps.MapTypeId.ROADMAP
-                        mapTypeControlOptions: {mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']}
+                        mapTypeControlOptions: {mapTypeIds: [google.maps.MapTypeId.SATELLITE, 'map_style']}
     }
     
     // Parâmetros do texto que será exibido no clique;
-    var contentString = '<h2>Marco Zero</h2>' +
-                        '<p>Praça Rio Branco, Recife/PE.</p>' +
-                        '<a href="http://pt.wikipedia.org/wiki/Pra%C3%A7a_Rio_Branco_(Recife)" target="_blank">clique aqui para mais informações</a>';
+    var contentString = '<h4>Cartório Moreira de Deus</h4>' +
+                        '<p>Rua Casimiro Montenegro, 70, Monte Castelo , Fortaleza - Ceará, CEP: 60.325-720</p>' +
+                        '<a href="http://www.cartoriomoreiradedeus.not.br" target="_blank">clique aqui para mais informações</a>';
     var infowindow = new google.maps.InfoWindow({   content: contentString,
                                                     maxWidth: 700
     });
@@ -22,11 +22,11 @@ function initialize() {
     var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
 
     // Marcador personalizado;
-    var image = 'https://cdn1.iconfinder.com/data/icons/gpsmapicons/blue/gpsmapicons01.png';
+    var image = 'https://storage.googleapis.com/discoveryone/public/images/moreiradedeus/map-marker-icon.png';
     var marcadorPersonalizado = new google.maps.Marker({    position: myLatlng,
                                                             map: map,
                                                             icon: image,
-                                                            title: 'Marco Zero - Recife/PE',
+                                                            title: 'Cartório Moreira de Deus',
                                                             animation: google.maps.Animation.DROP
     });
 
@@ -35,7 +35,7 @@ function initialize() {
 
     // Estilizando o mapa;
     // Criando um array com os estilos
-    var styles = [{stylers: [   { hue: "#41a7d5" },
+    var styles = [{stylers: [   { hue: "rgba(113, 193, 212, 0.69)" },
                                 { saturation: 60 },
                                 { lightness: -20 },
                                 { gamma: 1.51 }
@@ -51,7 +51,7 @@ function initialize() {
                 ];
 
     // crio um objeto passando o array de estilos (styles) e definindo um nome para ele;
-    var styledMap = new google.maps.StyledMapType(styles, {name: "Mapa Style"});
+    var styledMap = new google.maps.StyledMapType(styles, {name: "Estilo"});
     
     // Aplicando as configurações do mapa
     map.mapTypes.set('map_style', styledMap);
