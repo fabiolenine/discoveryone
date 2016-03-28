@@ -224,7 +224,7 @@ appSequence.use(function(err, req, res, next) {
 });
 
 appMoreiradedeus.use(function(req, res, next) {
-  res.status(404).send('Sorry cant find that!');
+  	res.status(404).render('404.ejs');
 });
 
 appMoreiradedeus.use(function(err, req, res, next) {
