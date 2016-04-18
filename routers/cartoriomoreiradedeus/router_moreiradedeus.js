@@ -3,11 +3,6 @@
 module.exports = function(app)
 {
 	
-	app.use(function(req,res,next){
-		res.header('Access-Control-Allow-Origin','http://moreiradedeus.com.br');
-		next();
-	});
-	
 	app.get('/', function(req, res){
 		res.render('index.ejs');
 	});
