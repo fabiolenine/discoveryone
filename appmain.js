@@ -28,6 +28,7 @@ app.listen(80);
 
 // Parametrização dos caminhos estaticos public e de views
 	appMoreiradedeus.use(express.static('public/moreiradedeus'));
+	appMoreiradedeus.use('Access-Control-Allow-Origin','*');
 	appMoreiradedeus.set('view engine','ejs');
 	appMoreiradedeus.set('views','views/moreiradedeus');
 
