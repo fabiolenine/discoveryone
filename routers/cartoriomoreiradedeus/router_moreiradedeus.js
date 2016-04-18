@@ -3,6 +3,11 @@
 module.exports = function(app)
 {
 	
+	app.use(function(req,res,next){
+		res.header('Access-Control-Allow-Origin','*');
+		next();
+	});
+	
 	app.get('/', function(req, res){
 		res.render('index.ejs');
 	});
@@ -101,11 +106,6 @@ module.exports = function(app)
 
 	app.get('/sitemap-w3not.xml', function(req, res){
 		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-w3not.xml');
-	});
-	
-	app.use(function(req,res,next){
-		res.header('Access-Control-Allow-Origin','*');
-		next();
 	});
 	
 	// Tratamentos dos erros 404 e 500
