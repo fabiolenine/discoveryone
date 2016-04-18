@@ -103,6 +103,11 @@ module.exports = function(app)
 		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-w3not.xml');
 	});
 	
+	app.use(function(req,res,next){
+		res.header('Access-Control-Allow-Origin','*');
+		next();
+	});
+	
 	// Tratamentos dos erros 404 e 500
 	app.use(function(req, res, next) {
   		res.status(404).render('404.ejs');
