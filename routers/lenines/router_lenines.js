@@ -4,7 +4,7 @@ module.exports = function(app)
 {
 
 // Parametrização dos caminhos estaticos public e de views
-	app.use(express.static('../public/lenines'));
+	app.use(app.static('../public/lenines'));
 	app.set('view engine','ejs');
 	app.set('views','../views/lenines');
 	
