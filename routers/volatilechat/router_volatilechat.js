@@ -2,11 +2,6 @@
 
 module.exports = function(app)
 {
-
-// Parametrização dos caminhos estaticos public e de views
-	app.use(express.static('../public/volatilechat'));
-	app.set('view engine','ejs');
-	app.set('views','../views/volatilechat');
 	
 	app.get('/', function(req, res){
     	var language = req.headers["accept-language"];

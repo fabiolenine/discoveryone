@@ -26,6 +26,26 @@ app.listen(80);
 
 //https.createServer(options, app).listen(443);
 
+// Parametrização dos caminhos estaticos public e de views
+	appMoreiradedeus.use(express.static('../public/moreiradedeus'));
+	appMoreiradedeus.set('view engine','ejs');
+	appMoreiradedeus.set('views','../views/moreiradedeus');
+
+// Parametrização dos caminhos estaticos public e de views
+	app.use(express.static('../public/lenines'));
+	app.set('view engine','ejs');
+	app.set('views','../views/lenines');
+
+// Parametrização dos caminhos estaticos public e de views
+	appSequence.use(express.static('../public/sequence'));
+	appSequence.set('view engine','ejs');
+	appSequence.set('views','../views/sequence');
+
+// Parametrização dos caminhos estaticos public e de views
+	appVolatilechat.use(express.static('../public/volatilechat'));
+	appVolatilechat.set('view engine','ejs');
+	appVolatilechat.set('views','../views/volatilechat');
+
 // Roteamentos
 require('./routers/lenines/router_lenines.js')(app);
 require('./routers/volatilechat/router_volatilechat.js')(appVolatilechat);

@@ -3,11 +3,6 @@
 module.exports = function(app)
 {
 	
-// Parametrização dos caminhos estaticos public e de views
-	app.use(express.static('../public/moreiradedeus'));
-	app.set('view engine','ejs');
-	app.set('views','../views/moreiradedeus');
-	
 	app.get('/', function(req, res){
 		res.render('index.ejs');
 	});
