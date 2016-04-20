@@ -1,8 +1,9 @@
-var express = require('express');
-var http    = require('http')
-var io      = require('socket.io')(http);
-var vhost   = require('vhost');
-var socket  = require('./public/javascripts/volatilechat/socket.js');
+var express 	= require('express');
+var http    	= require('http')
+var io      	= require('socket.io')(http);
+var vhost   	= require('vhost');
+var nodemailer	= require('nodemailer');
+var socket  	= require('./public/javascripts/volatilechat/socket.js');
 
 // Roteamento de domínio e sub-domínios
 var app                         = express();
@@ -25,6 +26,9 @@ app.use(vhost('moreiradedeus.not.br',appMoreiradedeus));
 app.listen(80); 
 
 //https.createServer(options, app).listen(443);
+
+//Definições dos detalhes que serão repassados as rotas para serem utilizados
+var detalheemail = require('./modulos/cartoriomoreiradedeus/detalhe_email.js')(nodemailer);
 
 // Parametrização dos caminhos estaticos public e de views
 	appMoreiradedeus.use(express.static('public/moreiradedeus'));
@@ -50,7 +54,7 @@ app.listen(80);
 require('./routers/lenines/router_lenines.js')(app);
 require('./routers/volatilechat/router_volatilechat.js')(appVolatilechat);
 require('./routers/sequence/router_sequence.js')(appSequence);
-require('./routers/cartoriomoreiradedeus/router_moreiradedeus.js')(appMoreiradedeus);
+require('./routers/cartoriomoreiradedeus/router_moreiradedeus.js')(appMoreiradedeus,detalheemail);
 
 // Conexão com socket.io
 io.on('connection', socket);
