@@ -1,6 +1,6 @@
 module.exports = function(nodemailer){
 
-	var accountmail = require('.../config/cartoriomoreiradedeus/accountmail.js');
+	var accountmail = require('/home/fabiolenine_gmail_com/discoveryone/config/cartoriomoreiradedeus/accountmail.js');
 	
 	var enviaremail = function(nome, email, assunto, mensagem, 
 						    	//lat, loc
