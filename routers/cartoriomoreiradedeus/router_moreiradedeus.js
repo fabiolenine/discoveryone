@@ -14,6 +14,8 @@ module.exports = function(app,detalheemail)
         //var Loc                 = req.body.location.lng;
         //var Lat                 = req.body.location.lat;
         
+		console.log(req.body);
+		
         if (null == Email || Email.length < 5)
                 {
                     res.send(false);
