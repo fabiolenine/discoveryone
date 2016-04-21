@@ -16,6 +16,7 @@ module.exports = function(nodemailer, smtpTransport){
 
 		var transporter = nodemailer.createTransport(smtpTransport(accountmail));
 		
+		console.log(accountmail);
 		console.log(transporter);
 		
 		transporter.sendMail(mailOptions, function(error, info){
