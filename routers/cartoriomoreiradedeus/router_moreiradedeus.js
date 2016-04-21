@@ -7,14 +7,14 @@ module.exports = function(app,detalheemail)
 	});
 	
 	app.post('/sendmail', function(req, res){
+		console.log(req.body);
+		
         var Email               = req.body.email;
         var Mensagem            = req.body.mensagem;
         var Nome                = req.body.nome;
 		var Assunto				= req.body.assunto;
         //var Loc                 = req.body.location.lng;
         //var Lat                 = req.body.location.lat;
-        
-		console.log(req.body);
 		
         if (null == Email || Email.length < 5)
                 {
