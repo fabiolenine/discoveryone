@@ -1,4 +1,6 @@
 var express 	= require('express');
+var bodyParser	= require('body-parser');
+
 var http    	= require('http')
 var io      	= require('socket.io')(http);
 var vhost   	= require('vhost');
@@ -10,6 +12,9 @@ var app                         = express();
 var appVolatilechat             = express();
 var appSequence                 = express();
 var appMoreiradedeus            = express();
+
+app.use(bodyParser.json());							//for parsing application/json
+app.use(bodyParser.urlencoded({extended: true}));	// for parsing application/x-www-form-urlencoded
 
 app.use(vhost('www.volatilechat.com',appVolatilechat));
 app.use(vhost('volatilechat.com',appVolatilechat));

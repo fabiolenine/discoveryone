@@ -7,7 +7,9 @@ module.exports = function(app,detalheemail)
 	});
 	
 	app.post('/sendmail', function(req, res){
-		res.send(req.body);
+		console.log(req.body);
+		
+		res.json(req.body);
 		
         var Email               = req.body.email;
         var Mensagem            = req.body.mensagem;
