@@ -4,7 +4,7 @@ var http    		= require('http')
 var io      		= require('socket.io')(http);
 var vhost   		= require('vhost');
 var nodemailer		= require('nodemailer');
-var smtpTransport 	= require('nodemailer-stmp-transport');
+var smtpTransport 	= require('nodemailer-smtp-transport');
 var socket  		= require('./public/javascripts/volatilechat/socket.js');
 
 // Roteamento de domínio e sub-domínios
