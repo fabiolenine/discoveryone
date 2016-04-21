@@ -1,11 +1,11 @@
-var express 	= require('express');
-var bodyParser	= require('body-parser');
-
-var http    	= require('http')
-var io      	= require('socket.io')(http);
-var vhost   	= require('vhost');
-var nodemailer	= require('nodemailer');
-var socket  	= require('./public/javascripts/volatilechat/socket.js');
+var express 		= require('express');
+var bodyParser		= require('body-parser');
+var http    		= require('http')
+var io      		= require('socket.io')(http);
+var vhost   		= require('vhost');
+var nodemailer		= require('nodemailer');
+var smtpTransport 	= require('nodemailer-stmp-transport');
+var socket  		= require('./public/javascripts/volatilechat/socket.js');
 
 // Roteamento de domínio e sub-domínios
 var app                         = express();
@@ -33,7 +33,7 @@ app.listen(80);
 //https.createServer(options, app).listen(443);
 
 //Definições dos detalhes que serão repassados as rotas para serem utilizados
-var detalheemail = require('./modulos/cartoriomoreiradedeus/detalhe_email.js')(nodemailer);
+var detalheemail = require('./modulos/cartoriomoreiradedeus/detalhe_email.js')(nodemailer,smtpTransport);
 
 // Parametrização dos caminhos estaticos public e de views
 	appMoreiradedeus.use(express.static('public/moreiradedeus'));
