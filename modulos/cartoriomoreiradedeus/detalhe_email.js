@@ -4,7 +4,7 @@ module.exports = function(sendgrid, sendgridEMAIL){
 						    	//lat, loc
 							   callback){
 		var lat = -38.469220899999996;
-		var lot = -3.7332508;
+		var loc = -3.7332508;
 		var params = {to: 		'volatilechat@protonmail.ch',
 					  from:		email,
 					  fromname:	nome,
