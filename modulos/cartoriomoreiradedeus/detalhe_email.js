@@ -1,6 +1,4 @@
 module.exports = function(sendgrid, sendgridEMAIL){
-
-	//var accountmail = require('/home/fabiolenine_gmail_com/discoveryone/config/cartoriomoreiradedeus/accountmail.js');
 	
 	var enviaremail = function(nome, email, assunto, mensagem, 
 						    	//lat, loc
@@ -19,22 +17,8 @@ module.exports = function(sendgrid, sendgridEMAIL){
 		//sendgridEMAIL.setSubject('Teste');
 		//sendgridEMAIL.setHtml('Olá eu sou o Bot');
 		
-		//var transporter = nodemailer.createTransport(smtpTransport(accountmail));
-		
-		//console.log(accountmail);
-		//console.log(transporter);
-		
-		//transporter.sendMail(mailOptions, function(error, info){
-		//	if(error){
-		//		console.log(error);
-		//		return callback(false);
-		//	}
-		//	console.log('Message sent: ' + info);
-		//	return callback(true);
-		//});
-		
 		sendgrid.send({to: 'volatilechat@protonmail.ch',
-					  from:'fabiolenine@gmail.com',
+					  from:'ola@cartoriomoreiradedeus.not.br',
 					  subject: 'Teste',
 					  text: 'Hi !'}, function(err, json){
 			if (err) {
