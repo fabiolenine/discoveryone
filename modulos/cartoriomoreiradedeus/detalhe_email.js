@@ -39,9 +39,9 @@ module.exports = function(sendgrid, sendgridEMAIL){
 					  text: 'Hi !'}, function(err, json){
 			if (err) {
 				console.error(err);
-				return false;}
+				return callback(false);}
 			console.log(json);
-			return true;
+			return callback(true);
 		});
 	};
 	
