@@ -7,10 +7,19 @@ module.exports = function(app)
     	res.render('index.ejs');
 	});
 	
-	app.use(function(req, res, next) {
-	  res.status(404).render('Sorry cant find that!');
+	app.get('/vonki(.html)?', function(req, res){
+		res.render('vonki.ejs');
 	});
-
+	
+	app.get('/sitemap.xml', function(req, res){
+		res.download('/home/fabiolenine_gmail_com/discoveryone/views/lenines/sitemap-com.xml');
+	});
+	
+	// Tratamentos dos erros 404 e 500
+	app.use(function(req, res, next) {
+  		res.status(404).render('404.ejs');
+	});
+	
 	app.use(function(err, req, res, next) {
 	  console.error(err.stack);
 	  res.status(500).send('Something broke!');

@@ -795,6 +795,16 @@ ul.sub-menu {
   background-position: 151px 4px;
 }
 
+.tour-button2 {
+  background-image: url(https://storage.googleapis.com/discoveryone/public/images/lenines/home/cycle.png);
+  height: 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  background-position: 200px 4px;
+}
+
 .about-image {
   padding:90px 90px 0;
 }
