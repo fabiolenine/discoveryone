@@ -9,8 +9,8 @@ module.exports = function(app,detalheemailsorteio)
 	
 	app.post('/vonki/emailparasorteio', function(req, res){
         var Email               = req.body.email;
-        let Loc                 = req.body.location.lng;
-        let Lat                 = req.body.location.lat;
+        var Loc                 = req.body.location.lng;
+        var Lat                 = req.body.location.lat;
 		
 		console.log('E-mail: ' + Email);
 		console.log('Logitude: ' + Loc);
