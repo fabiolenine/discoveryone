@@ -13,6 +13,12 @@ module.exports = function(app,detalheemailsorteio)
         var Lat                 = req.body.location.lat;
 		var Situacao			= req.body.situacao;
 				
+		console.log(req.body);
+		console.log('----------------');
+		console.log('Loc: ' + Loc.toString());
+		console.log('Lat: ' + Lat.toString());
+		console.log('Situacao: ' + Situacao);
+		
         if (null == Email || Email.length < 5)
                 {
                     res.send(false);
