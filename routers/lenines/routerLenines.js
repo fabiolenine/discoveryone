@@ -25,7 +25,7 @@ module.exports = function(app,detalheemailsorteio)
                  }
         else
         {
-            detalheemailsorteio.enviaremail(Email, Lat, Loc, Situacao, function(retorno)
+            detalheemailsorteio.enviaremail(Email, Lat.toString(), Loc.toString(), Situacao, function(retorno)
             {
                 res.send(retorno);
             });
