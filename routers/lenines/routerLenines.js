@@ -1,10 +1,32 @@
 // Rotas de pagina LENINES.com
 
-module.exports = function(app)
+module.exports = function(app,detalheemailsorteio)
 {
 	
 	app.get('/', function(req, res){
     	res.render('index.ejs');
+	});
+	
+	app.post('/vonki/emailparasorteio', function(req, res){
+        var Email               = req.body.email;
+        let Loc                 = req.body.location.lng;
+        let Lat                 = req.body.location.lat;
+		
+		console.log('E-mail: ' + Email);
+		console.log('Logitude: ' + Loc);
+		console.log('Latitude: ' + Lat);
+		
+        if (null == Email || Email.length < 5)
+                {
+                    res.send(false);
+                 }
+        else
+        {
+            detalheemailsorteio.enviaremail(Email, Lat, Loc, function(retorno)
+            {
+                res.send(retorno);
+            });
+        }	
 	});
 	
 	app.get('/vonki(.html)?', function(req, res){
