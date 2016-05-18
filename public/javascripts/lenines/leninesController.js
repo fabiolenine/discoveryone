@@ -4,6 +4,7 @@ angular.module('leninesApp',[])
 	
 	var latitude	= -35.717680;
 	var longitude	= -9.644430;
+	var situacaoGPS = 'permissão concedida';
 	
 	var geoOptions 	= { enableHighAccuracy: true,
 	                       timeout: 30000,
@@ -14,22 +15,22 @@ angular.module('leninesApp',[])
 	   switch( err.code ) {
           case 1:
 			// permissao negada pelo usuario
-			$scope.envio.situacao = 'permissão negada pelo usuário';  
+			situacaoGPS = 'permissão negada pelo usuário';  
             break;
 
 		  case 2:
             // nao foi possivel alcancar os satelites GPS
-			$scope.envio.situacao = 'não foi possivel alcancar os satelites GPS';   
+			situacaoGPS = 'não foi possivel alcancar os satelites GPS';   
             break;
 
 		  case 3: 
 			// a requisicao demorou demais para retornar
-			$scope.envio.situacao = ' requisição demorou demais para retornar';   
+			situacaoGPS = 'requisição demorou demais para retornar';   
             break;
 
 		  case 0:
 			// ocorreu um erro desconhecido...
-			$scope.envio.situacao = 'ocorreu um erro desconhecido';   
+			situacaoGPS = 'ocorreu um erro desconhecido';   
 			break;
 	       }	
     };
@@ -64,7 +65,7 @@ angular.module('leninesApp',[])
 
         $scope.envio = {email: '',
                        location: {lat: latitude, lng: longitude},
-					   situacao: 'permissão concedida'};
+					   situacao: situacaoGPS};
     };
     
     init();	
