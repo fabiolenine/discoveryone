@@ -12,20 +12,24 @@ angular.module('leninesApp',[])
     
     function geoError( err ) {
 	   switch( err.code ) {
-           case 1:
-			 // permissao negada pelo usuario
+          case 1:
+			// permissao negada pelo usuario
+			$scope.envio.situacao = 'permissão negada pelo usuário';  
             break;
 
 		  case 2:
             // nao foi possivel alcancar os satelites GPS
+			$scope.envio.situacao = 'não foi possivel alcancar os satelites GPS';   
             break;
 
-		  case 3:
+		  case 3: 
 			// a requisicao demorou demais para retornar
+			$scope.envio.situacao = ' requisição demorou demais para retornar';   
             break;
 
 		  case 0:
 			// ocorreu um erro desconhecido...
+			$scope.envio.situacao = 'ocorreu um erro desconhecido';   
 			break;
 	       }	
     };
@@ -58,8 +62,9 @@ angular.module('leninesApp',[])
         
         navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
 
-        $scope.envio = {email:'',
-                       location: {lat: latitude, lng: longitude}};
+        $scope.envio = {email: '',
+                       location: {lat: latitude, lng: longitude},
+					   situacao: 'permissão concedida'};
     };
     
     init();	

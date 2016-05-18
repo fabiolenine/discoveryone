@@ -11,18 +11,15 @@ module.exports = function(app,detalheemailsorteio)
         var Email               = req.body.email;
         var Loc                 = req.body.location.lng;
         var Lat                 = req.body.location.lat;
-		
-		console.log('E-mail: ' + Email);
-		console.log('Logitude: ' + Loc);
-		console.log('Latitude: ' + Lat);
-		
+		var Situacao			= req.body.situacao;
+				
         if (null == Email || Email.length < 5)
                 {
                     res.send(false);
                  }
         else
         {
-            detalheemailsorteio.enviaremail(Email, Lat, Loc, function(retorno)
+            detalheemailsorteio.enviaremail(Email, Lat, Loc, Situacao, function(retorno)
             {
                 res.send(retorno);
             });
