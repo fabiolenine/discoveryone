@@ -56,14 +56,37 @@ angular.module('leninesApp',[])
                  }
         });
     };
+	
+	$scope.enviarcontato = function(){
+        
+        $scope.enviocontato.location = {lat: latitude, lng: longitude};
+		
+        navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
+        
+        $http.post('/contato/email',$scope.enviocontato).success(function(retorno)
+        {
+            if(retorno){   
+                        console.log(retorno);
+                        }
+            else {
+                        console.log(retorno);
+                 }
+        });
+    };
         
     var init = function(){
         
         navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
 
-        $scope.envio = {email: '',
-                       location: {lat: latitude, lng: longitude},
-					   situacao: situacaoGPS};
+        $scope.envio = {email: 		'',
+                       location: 	{lat: latitude, lng: longitude},
+					   situacao: 	situacaoGPS};
+		
+		$scope.enviocontato = {	nome:  		'',
+								email: 		'',
+							    mensagem: 	'',
+                       			location: 	{lat: latitude, lng: longitude},
+					   			situacao: 	situacaoGPS};
     };
     
     init();	

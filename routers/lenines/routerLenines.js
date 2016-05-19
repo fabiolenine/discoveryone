@@ -26,6 +26,27 @@ module.exports = function(app,detalheemailsorteio)
         }	
 	});
 	
+	app.post('/contato/email', function(req, res){
+		var Nome		= req.body.nome;
+        var Email       = req.body.email;
+		var Mensagem	= req.body.mensagem;
+        var Loc         = req.body.location.lng;
+        var Lat         = req.body.location.lat;
+		var Situacao	= req.body.situacao;
+		
+        if (null == Email || Email.length < 5)
+                {
+                    res.send(false);
+                 }
+        else
+        {
+            detalheemail.enviaremail(Nome, Email, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
+            {
+                res.send(retorno);
+            });
+        }	
+	});
+	
 	app.get('/vonki(.html)?', function(req, res){
 		res.render('vonki.ejs');
 	});
