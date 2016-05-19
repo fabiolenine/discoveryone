@@ -1,6 +1,6 @@
 // Rotas de pagina LENINES.com
 
-module.exports = function(app,detalheemailsorteio)
+module.exports = function(app,detalheemailsorteio,detalheemail)
 {
 	
 	app.get('/', function(req, res){
