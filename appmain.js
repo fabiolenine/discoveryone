@@ -1,12 +1,12 @@
-const express 		= require('express');
+const express 			= require('express');
 const bodyParser		= require('body-parser');
-const http    		= require('http')
-const io      		= require('socket.io')(http);
-const vhost   		= require('vhost');
+const http    			= require('http')
+const io      			= require('socket.io')(http);
+const vhost   			= require('vhost');
 const sendgridAPIKEy	= require('./config/cartoriomoreiradedeus/apikeySendgrid.js');
-const sendgrid		= require('sendgrid')(sendgridAPIKEy);
-const sendgridEMAIL	= new sendgrid.Email();
-const socket  		= require('./public/javascripts/volatilechat/socket.js');
+const sendgrid			= require('sendgrid')(sendgridAPIKEy);
+const sendgridEMAIL		= new sendgrid.Email();
+const socket  			= require('./public/javascripts/volatilechat/socket.js');
 
 // Roteamento de domínio e sub-domínios
 const app                         = express();
@@ -36,6 +36,7 @@ app.listen(80);
 //Definições dos detalhes que serão repassados as rotas para serem utilizados
 const detalheemail 			= require('./modulos/cartoriomoreiradedeus/detalheEmail.js')(sendgrid, sendgridEMAIL);
 const detalheemailsorteio	= require('./modulos/lenines/detalheEmailSorteio.js')(sendgrid, sendgridEMAIL);
+const detalheemaillenines	= require('./modulos/lenines/detalheEmail.js')(sendgrid, sendgridEMAIL);
 
 // Parametrização dos caminhos estaticos public e de views
 	appMoreiradedeus.use(express.static('public/moreiradedeus'));
@@ -58,7 +59,7 @@ const detalheemailsorteio	= require('./modulos/lenines/detalheEmailSorteio.js')(
 	appVolatilechat.set('views','views/volatilechat');
 
 // Roteamentos
-require('./routers/lenines/routerLenines.js')(app,detalheemailsorteio);
+require('./routers/lenines/routerLenines.js')(app,detalheemailsorteio,detalheemaillenines);
 require('./routers/volatilechat/routerVolatilechat.js')(appVolatilechat);
 require('./routers/sequence/routerSequence.js')(appSequence);
 require('./routers/cartoriomoreiradedeus/routerMoreiradedeus.js')(appMoreiradedeus,detalheemail);
