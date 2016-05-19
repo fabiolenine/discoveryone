@@ -11,7 +11,7 @@ module.exports = function(sendgrid, sendgridEMAIL){
 		var paramsClient = {  to: 		email,
 							  from:		'lenine@lenines.com',
 							  subject:	'VonKI está confirmando e-mail',
-							  html:		'<style> header { color:white; text-align:center; padding:5px; } footer {background-color:black; color:white; clear:both; text-align:center; padding:5px; } </style> <header> <h1> <a href="http://www.lenines.com"> <img src="https://storage.googleapis.com/discoveryone/public/images/lenines/logo.png" alt="Logo da LENINES"> </a> </h1> </header> <div> Agradecemos por informar o seu e-mail.<br> <br>A partir de agora estará participando de todos os sorteios futuros, boa sorte!<br> <br>Abraços,<br> <br>Fabio Lenine.<br> </div> <footer> Este e-mail foi enviado por: LENINES - Fortaleza Ceará </footer>',
+							  html:		'<style> header { color:white; text-align:center; padding:5px; } footer {background-color:black; color:white; clear:both; text-align:center; padding:5px; } </style> <header> <h1> <a href="http://www.lenines.com"> <img src="https://storage.googleapis.com/discoveryone/public/images/lenines/logo.png" alt="Logo da LENINES"> </a> </h1> </header> <div> Agradecemos por informar o seu e-mail.<br> <br>A partir de agora você está participando de todos os sorteios futuros, boa sorte!<br> <br>Abraços,<br> <br>Fabio Lenine.<br> </div> <footer> Este e-mail foi enviado por: LENINES - Fortaleza Ceará </footer>',
 							  replyto:	'lenine@lenines.com'}; 
 		
 		sendgrid.send(paramsLenine, function(err, json){
