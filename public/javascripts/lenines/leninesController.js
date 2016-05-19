@@ -43,8 +43,6 @@ angular.module('leninesApp',[])
     $scope.enviar = function(){
         
         $scope.envio.location = {lat: latitude, lng: longitude};
-        
-		console.log($scope.envio);
 		
         navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
         
