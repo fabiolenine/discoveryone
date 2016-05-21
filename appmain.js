@@ -36,7 +36,7 @@ app.listen(80);
 //Definições dos detalhes que serão repassados as rotas para serem utilizados
 const sendgridmails			= requere('./modulos/common/sendgridEmail.js')(sendgrid, sendgridEMAIL);
 const detalheemail 			= require('./modulos/cartoriomoreiradedeus/detalheEmail.js')(sendgrid, sendgridEMAIL);
-const detalheemailslenines	= require('./modulos/lenines/detalheEmails.js')(sendgridmails);
+//const detalheemailslenines	= require('./modulos/lenines/detalheEmails.js')(sendgridmails);
 
 
 // Parametrização dos caminhos estaticos public e de views
@@ -60,7 +60,7 @@ const detalheemailslenines	= require('./modulos/lenines/detalheEmails.js')(sendg
 	appVolatilechat.set('views','views/volatilechat');
 
 // Roteamentos
-require('./routers/lenines/routerLenines.js')(app, detalheemailslenines);
+//require('./routers/lenines/routerLenines.js')(app, detalheemailslenines);
 require('./routers/volatilechat/routerVolatilechat.js')(appVolatilechat);
 require('./routers/sequence/routerSequence.js')(appSequence);
 require('./routers/cartoriomoreiradedeus/routerMoreiradedeus.js')(appMoreiradedeus, detalheemail);
