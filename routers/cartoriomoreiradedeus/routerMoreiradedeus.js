@@ -13,6 +13,7 @@ module.exports = function(app,detalheemails)
 		var Assunto				= req.body.assunto;
         var Loc                 = req.body.location.lng;
         var Lat                 = req.body.location.lat;
+		var Situacao			= req.body.situacao;
 		
         if (null == Email || Email.length < 5)
                 {
