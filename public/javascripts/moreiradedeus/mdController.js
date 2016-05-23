@@ -48,23 +48,19 @@ angular.module('mdApp',[])
         
         $http.post('/contato/email',$scope.enviocontato).success(function(retorno)
         {
-            if(retorno){   
-                        console.log(retorno);
+            if(retorno){ 
 						$scope.msg = {	show: 		true,
-										msgretorno: 'Obrigado por compartilhar o seu pensamento, retornaremos em breve.'};
+										retorno: 	'Obrigado por compartilhar o seu pensamento, retornaremos em breve.'};
                         }
             else {
-                        console.log(retorno);
 						$scope.msg = {	show: 		true,
-										msgretorno: 'Houve algum problema, peço desculpa, mas tente mais tarde.'};
+										retorno: 	'Houve algum problema, peço desculpa, mas tente mais tarde.'};
                  }
         });
     };
-        
-    var init = function(){
-        
-        navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
-		
+      
+	
+	$scope.zerar = function(){
 		$scope.enviocontato = {	nome:  		'',
 								email: 		'',
 							    assunto:	'',
@@ -74,6 +70,13 @@ angular.module('mdApp',[])
 		
 		$scope.msg	= {	show: 		false,
 						retorno: 	''};
+	};
+	
+    var init = function(){
+        
+        navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
+		
+		$scope.zerar();
     };
     
     init();	
