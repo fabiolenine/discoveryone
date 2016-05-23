@@ -1,6 +1,6 @@
 // Rotas de pagina LENINES.com
 
-module.exports = function(app,detalheemailslenines)
+module.exports = function(app,detalheemails)
 {
 
 	require 
@@ -21,11 +21,11 @@ module.exports = function(app,detalheemailslenines)
                  }
         else
         {
-            detalheemailslenines.sorteiointerno(Email, Lat.toString(), Loc.toString(), Situacao, function(retorno)
+            detalheemails.sorteiointerno(Email, Lat.toString(), Loc.toString(), Situacao, function(retorno)
             {	
 				console.log('Envio de e-mail de contato interno teve sucesso? ' + retorno);
             });
-			detalheemailslenines.sorteiocliente(Email, Lat.toString(), Loc.toString(), Situacao, function(retorno)
+			detalheemails.sorteiocliente(Email, Lat.toString(), Loc.toString(), Situacao, function(retorno)
             {	
 				res.send(retorno);
             });
@@ -46,11 +46,11 @@ module.exports = function(app,detalheemailslenines)
                  }
         else
         {
-            detalheemailslenines.contatointerno(Nome, Email, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
+            detalheemails.contatointerno(Nome, Email, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
             {	
 				console.log('Envio de e-mail de contato interno teve sucesso? ' + retorno);
             });
-			detalheemailslenines.contatocliente(Nome, Email, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
+			detalheemails.contatocliente(Nome, Email, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
             {	
 				res.send(retorno);
             });

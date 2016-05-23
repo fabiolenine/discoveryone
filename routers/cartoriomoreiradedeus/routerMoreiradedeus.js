@@ -1,18 +1,18 @@
 // Rota dos sites Cartório Moreira de Deus
-module.exports = function(app,detalheemail)
+module.exports = function(app,detalheemails)
 {
 			 
 	app.get('/', function(req, res){
 		res.render('index.ejs');
 	});
 	
-	app.post('/sendmail', function(req, res){
+	app.post('/contato/email', function(req, res){
         var Email               = req.body.email;
         var Mensagem            = req.body.mensagem;
         var Nome                = req.body.nome;
 		var Assunto				= req.body.assunto;
-        //var Loc                 = req.body.location.lng;
-        //var Lat                 = req.body.location.lat;
+        var Loc                 = req.body.location.lng;
+        var Lat                 = req.body.location.lat;
 		
         if (null == Email || Email.length < 5)
                 {
@@ -20,11 +20,15 @@ module.exports = function(app,detalheemail)
                  }
         else
         {
-            detalheemail.enviaremail(Nome, Email, Assunto, Mensagem, //Lat, Loc, 
-									 function(retorno)
+            detalheemails.contatocliente(Nome, Email, Assunto, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
             {
                 res.send(retorno);
             });
+			detalheemails.contatointerno(Nome, Email, Assunto, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
+            {	
+				console.log(retorno);
+            });
+			
         }	
 	});
 	
