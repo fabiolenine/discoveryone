@@ -50,9 +50,13 @@ angular.module('mdApp',[])
         {
             if(retorno){   
                         console.log(retorno);
+						$scope.msg = {	show: 		true,
+										msgretorno: 'Obrigado por compartilhar o seu pensamento, retornaremos em breve.'};
                         }
             else {
                         console.log(retorno);
+						$scope.msg = {	show: 		true,
+										msgretorno: 'Houve algum problema, peço desculpa, mas tente mais tarde.'};
                  }
         });
     };
@@ -67,6 +71,9 @@ angular.module('mdApp',[])
 							    mensagem: 	'',
                        			location: 	{lat: latitude, lng: longitude},
 					   			situacao: 	situacaoGPS};
+		
+		$scope.msg	= {	show: 		false,
+						retorno: 	''};
     };
     
     init();	
