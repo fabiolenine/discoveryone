@@ -13,6 +13,7 @@ const app                         = express();
 const appVolatilechat             = express();
 const appSequence                 = express();
 const appMoreiradedeus            = express();
+//const appMDAPPS					  = express();
 
 app.use(bodyParser.json());							//for parsing application/json
 app.use(bodyParser.urlencoded({extended: true}));	// for parsing application/x-www-form-urlencoded
@@ -23,7 +24,8 @@ app.use(vhost('sequence.lenines.com',appSequence));
 app.use(vhost('www.cartoriomoreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('www.cartoriomoreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('www.moreiradedeus.com.br',appMoreiradedeus));
-app.use(vhost('www.moreiradedeus.not.br',appMoreiradedeus));
+app.use(vhost('www.moreiradedeus.not.br',appMoreiradedeus));	
+//app.use(vhost('apps.cartoriomoreiradedeus.not.br',appMDAPPS));
 app.use(vhost('cartoriomoreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('cartoriomoreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('moreiradedeus.com.br',appMoreiradedeus));

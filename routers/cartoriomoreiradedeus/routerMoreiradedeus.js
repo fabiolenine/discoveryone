@@ -11,6 +11,7 @@ module.exports = function(app,detalheemails)
         var Mensagem            = req.body.mensagem;
         var Nome                = req.body.nome;
 		var Assunto				= req.body.assunto;
+		var Telefone			= req.body.telefone;
         var Loc                 = req.body.location.lng;
         var Lat                 = req.body.location.lat;
 		var Situacao			= req.body.situacao;
@@ -21,11 +22,11 @@ module.exports = function(app,detalheemails)
                  }
         else
         {
-            detalheemails.contatocliente(Nome, Email, Assunto, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
+            detalheemails.contatocliente(Nome, Email, Assunto, function(retorno)
             {
                 res.send(retorno);
             });
-			detalheemails.contatointerno(Nome, Email, Assunto, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
+			detalheemails.contatointerno(Nome, Email, Assunto, Telefone, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
             {	
 				console.log(retorno);
             });
