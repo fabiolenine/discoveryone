@@ -12,3 +12,5 @@ config/cartoriomoreiradedeus/accountmail.js
 config/cartoriomoreiradedeus/apikey_sendgrid.js
 
 config/mdapps/mdsearchKey.json
+
+config/cartoriomoreiradedeus/configmongoose.js
