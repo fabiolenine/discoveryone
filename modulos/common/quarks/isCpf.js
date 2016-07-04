@@ -2,7 +2,7 @@ module.exports = function(value){
 	
 	var regex = /\d/;
 	
-	var isEmpty = require('isEmpty.js')(value);
+	var isEmpty = require('./isEmpty.js')(value);
 	if(isEmpty) return false;
 	
 	var validateCpf = require('../hadrons/validateCpf.js')(value);
