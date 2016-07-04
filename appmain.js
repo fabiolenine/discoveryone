@@ -18,7 +18,7 @@ const dbPath    = "mongodb://" +    configmongoose.USER     + ":" +
                                     configmongoose.PORT     + "/"+
                                     configmongoose.DATABASE;
 
-console.log('\ntentando se conectar a instância mongoDB localhost ' + config.HOST);
+console.log('\ntentando se conectar a instância mongoDB localhost ' + configmongoose.HOST);
 
 const db = mongoose.connect(dbPath);
 if ( !(db) ) console.log('Não é possível conectar ao mongoDB em '+dbPath);
