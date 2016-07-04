@@ -7,7 +7,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	});
 	
 	app.get('/pesquisar/cpf', function(req, res){
-		var Cpf					= req.body.cpf;
+		var Cpf					= req.params.cpf;
 		
 		console.log(req);
 		
