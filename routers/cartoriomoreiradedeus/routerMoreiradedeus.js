@@ -2,7 +2,7 @@
 module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 {
 			 
-	var isCPF = require('../modulos/common/quarks/isCpf.js');
+	var isCPF = require('../../modulos/common/quarks/isCpf.js');
 	
 	app.get('/', function(req, res){
 		res.render('index.ejs');

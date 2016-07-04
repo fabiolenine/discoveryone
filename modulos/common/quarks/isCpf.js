@@ -2,7 +2,7 @@ module.exports = function(value){
 	
 	var regex = /\d/;
 	
-	var isEmpty = require('../modulos/common/quarks/isEmpty')(value);
+	var isEmpty = require('../modulos/common/quarks/isEmpty.js')(value);
 	if(isEmpty) return false;
 	
 	var validateCpf = require('../modulos/common/hadrons/validateCpf.js')(value);
