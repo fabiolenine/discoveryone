@@ -1,9 +1,7 @@
-'use strict';
-
 module.exports = function(mongoose)
     {
 	
-	const  searchclienteModel = require('./modelSearchCliente.js');
+	var  searchclienteModel = require('./modelSearchCliente.js');
        
     var cpf = function(CPF, callback) {
         var search = searchclienteModel.model.find({cpfcnpj: CPF},function(err, result) {

@@ -1,18 +1,16 @@
-'use strict';
-
 module.exports = function(mongoose)
     {
-    const contatositeModel  = require('./modelContatoSite.js');
+    var contatositeModel  = require('./modelContatoSite.js');
        
     var salvar = function(nome, email, assunto, telefone, mensagem, lat, loc, situacao, callback) {
 
-		let newdata = new contatositeModel.model({	nome,
-												 	telefone,
-                                            		assunto,
-                                            		email,
-                                            		mensagem,
-										 			situacao,
-										 			loc			: {type: 'Point', coordinates:[Lon,Lat]}
+		var newdata = new contatositeModel.model({	nome	: nome,
+												 	telefone: telefone,
+                                            		assunto	: assunto,
+                                            		email	: email,
+                                            		mensagem: mensagem,
+										 			situacao: situacao,
+										 			loc		: {type: 'Point', coordinates:[Lon,Lat]}
 												 });
 		
         newdata.save(function(err, result) {                                             
