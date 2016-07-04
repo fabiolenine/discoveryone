@@ -9,7 +9,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	app.get('/pesquisar/cpf', function(req, res){
 		var Cpf					= req.body.cpf;
 		
-		console.log(req.body);
+		console.log(req);
 		
 		if (null == Cpf || Cpf.length != 11){
 			res.send(false);
