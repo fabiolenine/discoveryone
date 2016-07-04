@@ -10,7 +10,7 @@ module.exports = function(mongoose)
                                             		email	: email,
                                             		mensagem: mensagem,
 										 			situacao: situacao,
-										 			loc		: {type: 'Point', coordinates:[Lon,Lat]}
+										 			loc		: {type: 'Point', coordinates:[Loc,Lat]}
 												 });
 		
         newdata.save(function(err, result) {                                             
