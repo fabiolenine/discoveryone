@@ -2,6 +2,8 @@
 module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 {
 			 
+	var isCPF = require('../modulos/common/quarks/isCpf.js');
+	
 	app.get('/', function(req, res){
 		res.render('index.ejs');
 	});
@@ -11,8 +13,8 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 		
 		console.log(req);
 		
-		if (null == Cpf || Cpf.length != 11){
-			res.send(false);
+		if (!isCPF(Cpf)){
+			res.send('O CPF informado é invalido...');
 		}
 		else {
 			dbpesquisar.cpf(Cpf, function(retorno){
