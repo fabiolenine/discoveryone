@@ -2,7 +2,8 @@
 module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 {
 			 
-	var isCPF = require('../../modulos/common/quarks/isCpf.js');
+	var isCPF 	= require('../../modulos/common/quarks/isCpf.js');
+	var isCNPJ	= require('../../modulos/common/quarks/isCnpj.js');
 	
 	app.get('/', function(req, res){
 		res.render('index.ejs');
@@ -16,6 +17,19 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 		}
 		else {
 			dbpesquisar.cpf(Cpf, function(retorno){
+				res.send(retorno);
+			});	
+		}
+	});
+	
+	app.get('/pesquisar/cnpj', function(req, res){
+		var Cnpj				= req.query.cnpj;
+		
+		if (!isCNPJ(Cnpj)){
+			res.send('O CNPJ informado é invalido...');
+		}
+		else {
+			dbpesquisar.cnpj(Cnpj, function(retorno){
 				res.send(retorno);
 			});	
 		}
