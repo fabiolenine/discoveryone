@@ -4,6 +4,8 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 			 
 	var isCPF 	= require('../../modulos/common/quarks/isCpf.js');
 	var isCNPJ	= require('../../modulos/common/quarks/isCnpj.js');
+	var isNOME	= require('../../modulos/common/quarks/isNome.js');
+	var isMAIL	= require('../../modulos/common/quarks/isEmail.js');
 	
 	app.get('/', function(req, res){
 		res.render('index.ejs');
@@ -35,6 +37,19 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 		}
 	});
 	
+	app.get('/pesquisar/nome', function(req, res){
+		var Nome				= req.query.nome;
+		
+		if (!isNOME(Nome)){
+			res.send('O nome informado é invalido...');
+		}
+		else {
+			dbpesquisar.nome(Nome, function(retorno){
+				res.send(retorno);
+			});	
+		}
+	});
+	
 	app.post('/contato/email', function(req, res){
         var Email               = req.body.email;
         var Mensagem            = req.body.mensagem;
@@ -45,7 +60,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
         var Lat                 = req.body.location.lat;
 		var Situacao			= req.body.situacao;
 		
-        if (null == Email || Email.length < 5)
+        if (!isEMAIL(Email))
                 {
                     res.send(false);
                  }

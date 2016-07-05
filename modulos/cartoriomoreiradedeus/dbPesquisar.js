@@ -25,10 +25,23 @@ module.exports = function(mongoose)
             	callback(result);
 			};
         });   			
-    };	
+    };
+	
+	var nome = function(NOME, callback) {
+		var search = searchclienteModel.model.find({situacao: {$ne: "Bloqueado no SAN"}, $text: { $search: NOME}},{ score: { $meta: "textScore" } }).sort({ score : { $meta : 'textScore' } }).limit(5).exec(function(err, result) {
+            if (err) {
+                console.error('Erro: ' + err);
+                callback('Houve algum problema, informação não encontrada.');
+            }
+            else {
+            	callback(result);
+			};
+        });   			
+    };
 	
    var retorno = {  "cpf"   : cpf,
-				 	"cnpj"	: cnpj};
+				 	"cnpj"	: cnpj,
+				 	"nome"	: nome};
    
    return retorno;     
  	};
