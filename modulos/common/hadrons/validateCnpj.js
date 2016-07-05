@@ -16,7 +16,7 @@ module.exports = function(value){
         return false;
 
     tamanho = tamanho + 1;
-    numeros = cnpj.substring(0,tamanho);
+    numeros = value.substring(0,tamanho);
     soma = 0;
     pos = tamanho - 7;
     for (i = tamanho; i >= 1; i--) {
