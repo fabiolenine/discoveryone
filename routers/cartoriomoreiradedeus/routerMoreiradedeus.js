@@ -12,13 +12,10 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	});
 	
 	app.get('/pesquisar/cpf', function(req, res){
-		var Cpf					= req.params.data;
-		var Loc                 = req.params.lng;
-        var Lat                 = req.params.lat;
-		var Situacao			= req.params.situacao;
-		
-		console.log(req.params);
-		console.log(req);
+		var Cpf					= req.query.data;
+		var Loc                 = req.query.lng;
+        var Lat                 = req.query.lat;
+		var Situacao			= req.query.situacao;
 		
 		if (!isCPF(Cpf)){
 			res.send('O CPF informado é invalido...');
