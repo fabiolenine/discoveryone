@@ -12,10 +12,12 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	});
 	
 	app.get('/pesquisar/cpf', function(req, res){
-		var Cpf					= req.query.data;
+		var Cpf					= req.params.data;
+		var Loc                 = req.params.lng;
+        var Lat                 = req.params.lat;
+		var Situacao			= req.params.situacao;
 		
-		console.log(req.body);
-		console.log(req.query);
+		console.log(req.params);
 		
 		if (!isCPF(Cpf)){
 			res.send('O CPF informado é invalido...');
@@ -27,8 +29,11 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 		}
 	});
 	
-	app.get('/pesquisar/cnpj', function(req, res){
-		var Cnpj				= req.query.data;
+	app.post('/pesquisar/cnpj', function(req, res){
+		var Cnpj				= req.body.data;
+		var Loc                 = req.body.location.lng;
+        var Lat                 = req.body.location.lat;
+		var Situacao			= req.body.situacao;
 		
 		if (!isCNPJ(Cnpj)){
 			res.send('O CNPJ informado é invalido...');
@@ -40,8 +45,11 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 		}
 	});
 	
-	app.get('/pesquisar/nome', function(req, res){
-		var Nome				= req.query.data;
+	app.post('/pesquisar/nome', function(req, res){
+		var Nome				= req.body.data;
+		var Loc                 = req.body.location.lng;
+        var Lat                 = req.body.location.lat;
+		var Situacao			= req.body.situacao;
 		
 		if (!isNOME(Nome)){
 			res.send('O nome informado é invalido...');

@@ -15,17 +15,18 @@ angular.module('mdPesquisar',["formatCpf","formatCnpj"])
 			
 			console.log($scope.enviopesquisa);
 			
-			$http.get('/pesquisar/cpf',$scope.enviopesquisa).success(function(retorno)
-			{
-				if(retorno){ 
-							console.log(retorno);
+			$http({	url: '/pesquisar/cpf',
+        			method: "GET",
+        			params: { 	data	: $scope.enviopesquisa.data,
+								situacao: $scope.enviopesquisa.situacao,
+							 	lat		: $scope.enviopesquisa.location.lat,
+							 	lng		: $scope.enviopesquisa.location.lng
 							}
-				else {
-							$scope.msg = {	show: 		true,
-											retorno: 	'Informação não encontrada.'};
-							console.log($scope.msg);
-					 }
-			});
+    			}).then(function mySucces(retorno) {
+        					console.log(retorno);
+    			}, function myError(response) {
+        				console.log(retorno);
+    			});
 			
 		} else if(value==='CNPJ'){
 			
@@ -33,14 +34,14 @@ angular.module('mdPesquisar',["formatCpf","formatCnpj"])
 			
 			$scope.enviopesquisa.data = repFinal;
 			
-			$http.get('/pesquisar/cnpj',$scope.enviopesquisa).success(function(retorno)
+			$http.post('/pesquisar/cnpj',$scope.enviopesquisa).success(function(retorno)
 			{
 				if(retorno){ 
 							console.log(retorno);
 							}
 				else {
 							$scope.msg = {	show: 		true,
-											retorno: 	'Informação não encontrada.'};
+											retorno};
 					 }
 			});			
 		} else if(value==='Nome'){
@@ -49,14 +50,14 @@ angular.module('mdPesquisar',["formatCpf","formatCnpj"])
 			
 			$scope.enviopesquisa.data = repFinal;
 			
-			$http.get('/pesquisar/nome',$scope.enviopesquisa).success(function(retorno)
+			$http.post('/pesquisar/nome',$scope.enviopesquisa).success(function(retorno)
 			{
 				if(retorno){ 
 							console.log(retorno);
 							}
 				else {
 							$scope.msg = {	show: 		true,
-											retorno: 	'Informação não encontrada.'};
+											retorno};
 					 }
 			});			
 		};
