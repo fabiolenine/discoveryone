@@ -12,7 +12,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	});
 	
 	app.get('/pesquisar/cpf', function(req, res){
-		var Cpf					= req.query.cpf;
+		var Cpf					= req.query.data;
 		
 		if (!isCPF(Cpf)){
 			res.send('O CPF informado é invalido...');
@@ -25,7 +25,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	});
 	
 	app.get('/pesquisar/cnpj', function(req, res){
-		var Cnpj				= req.query.cnpj;
+		var Cnpj				= req.query.data;
 		
 		if (!isCNPJ(Cnpj)){
 			res.send('O CNPJ informado é invalido...');
@@ -38,7 +38,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	});
 	
 	app.get('/pesquisar/nome', function(req, res){
-		var Nome				= req.query.nome;
+		var Nome				= req.query.data;
 		
 		if (!isNOME(Nome)){
 			res.send('O nome informado é invalido...');
@@ -141,6 +141,10 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	app.get('/produtos(.html)?', function(req, res){
 		res.render('produtos.ejs');
 	});
+	
+	app.get('/produtos/pesquisar(.html)?', function(req, res){
+		res.render('produtos/pesquisar.ejs');
+	});	
 
 	app.get('/reputacao(.html)?', function(req, res){
 		res.render('reputacao.ejs');

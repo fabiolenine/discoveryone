@@ -1,22 +1,22 @@
-var mdAppCPF = angular.module('formatCpf',[]);
+var mdAppCNPJ = angular.module('formatCnpj',[]);
 
-mdAppCPF.directive('inputCpf', function($filter, $browser) {
+mdAppCNPJ.directive('inputCnpj', function($filter, $browser) {
     return{	
 			restrict: 'AE',
 			require: 'ngModel',
 			link: function($scope, $element, $attrs, ngModelCtrl) {	
-					
+			
 				var listener = function() {
 					var value = $element.val().replace(/[^0-9]/g, '');
-					$element.val($filter('cpf')(value, false));
+					$element.val($filter('cnpj')(value, false));
 				};
 
 	ngModelCtrl.$parsers.push(function(viewValue) {
-					return viewValue.replace(/[^0-9]/g, '').slice(0,11);
+					return viewValue.replace(/[^0-9]/g, '').slice(0,14);
 				});
 
 	ngModelCtrl.$render = function() {
-					$element.val($filter('cpf')(ngModelCtrl.$viewValue, false));
+					$element.val($filter('cnpj')(ngModelCtrl.$viewValue, false));
 				};
 
 				$element.bind('change', listener);
@@ -33,19 +33,18 @@ mdAppCPF.directive('inputCpf', function($filter, $browser) {
 				$element.bind('paste cut', function() {
 					$browser.defer(listener);
 				});
-			
-		}
-    };
+			}
+	};
 });
 
-mdAppCPF.filter('cpf', function () {
-    return function (cpf) {
-        if (!cpf) { return ''; }
+mdAppCNPJ.filter('cnpj', function () {
+    return function (cnpj) {
+        if (!cnpj) { return ''; }
 
-        var value = cpf.toString().trim().replace(/^\+/, '');
+        var value = cnpj.toString().trim().replace(/^\+/, '');
 
         if (value.match(/[^0-9]/)) {
-            return cpf;
+            return cnpj;
         }
 
         var number3first, numberlast;
@@ -64,7 +63,7 @@ mdAppCPF.filter('cpf', function () {
 
         if(numberlast){
             if(numberlast.length>3){
-                numberlast = numberlast.slice(0, 3) + '.' + numberlast.slice(3,6) + '-' + numberlast.slice(6,8);
+                numberlast = numberlast.slice(0, 3) + '.' + numberlast.slice(3,6) + '/' + numberlast.slice(6,10) + '-' + numberlast.slice(10,12);
             }
             else{
                 numberlast = numberlast;

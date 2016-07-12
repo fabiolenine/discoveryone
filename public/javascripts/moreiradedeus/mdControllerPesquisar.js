@@ -1,41 +1,68 @@
-angular.module('mdPesquisar',["formatCpf"])
+angular.module('mdPesquisar',["formatCpf","formatCnpj"])
 .controller('mdControllerPesquisa', function($scope,$http,$window) {
-		        
-	$scope.enviarpesquisa = function(){
+	
+	$scope.enviarpesquisa = function(value){
 		
 		$scope.enviopesquisa.location = {lat: latitude, lng: longitude};
 		
         navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
 		
-		$http.get('/pesquisar/cpf',$scope.enviopesquisa).success(function(retorno)
-        {
-            if(retorno){ 
-						console.log(retorno);
-                        }
-            else {
-						$scope.msg = {	show: 		true,
-										retorno: 	'Nome não disponivel on-line, por favor, vá pessoalmente o cartório'};
-                 }
-        });
+		if(value==='CPF') {
+			var regex = /\d/;
+			
+			console.log(regex.test($scope.data));
+			
+			$http.get('/pesquisar/cpf',$scope.enviopesquisa).success(function(retorno)
+			{
+				if(retorno){ 
+							console.log(retorno);
+							}
+				else {
+							$scope.msg = {	show: 		true,
+											retorno: 	'Informação não encontrada.'};
+					 }
+			});
+		} else if(value==='CNPJ'){
+			$http.get('/pesquisar/cnpj',$scope.enviopesquisa).success(function(retorno)
+			{
+				if(retorno){ 
+							console.log(retorno);
+							}
+				else {
+							$scope.msg = {	show: 		true,
+											retorno: 	'Informação não encontrada.'};
+					 }
+			});			
+		} else if(value==='Nome'){
+			$http.get('/pesquisar/nome',$scope.enviopesquisa).success(function(retorno)
+			{
+				if(retorno){ 
+							console.log(retorno);
+							}
+				else {
+							$scope.msg = {	show: 		true,
+											retorno: 	'Informação não encontrada.'};
+					 }
+			});			
+		};
 		
 	};
-      
 	
-	$scope.zerarCPF = function(){
+	$scope.zerarData = function(){
 
-		$scope.enviopesquisa = { cpf:		'',
+		$scope.enviopesquisa = { data:		'',
 								 location: 	{lat: latitude, lng: longitude},
 					   			 situacao: 	situacaoGPS};
-		
+
 	};
 	
-    var initCpf = function(){
+    var initFind = function(){
         
         navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
 		
-		$scope.zerarCPF();
+		$scope.zerarData();
     };
     
-    initCpf();	
+    initFind();	
 	
 });
