@@ -14,6 +14,9 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	app.get('/pesquisar/cpf', function(req, res){
 		var Cpf					= req.query.data;
 		
+		console.log(req.body);
+		console.log(req.query);
+		
 		if (!isCPF(Cpf)){
 			res.send('O CPF informado é invalido...');
 		}

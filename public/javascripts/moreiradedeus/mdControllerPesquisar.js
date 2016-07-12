@@ -8,9 +8,12 @@ angular.module('mdPesquisar',["formatCpf","formatCnpj"])
         navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
 		
 		if(value==='CPF') {
-			var regex = /\d/;
 			
-			console.log(regex.test($scope.data));
+			var repFinal = $scope.enviopesquisa.data.replace(/\D/g,'');
+			
+			$scope.enviopesquisa.data = repFinal;
+			
+			console.log($scope.enviopesquisa);
 			
 			$http.get('/pesquisar/cpf',$scope.enviopesquisa).success(function(retorno)
 			{
@@ -20,9 +23,16 @@ angular.module('mdPesquisar',["formatCpf","formatCnpj"])
 				else {
 							$scope.msg = {	show: 		true,
 											retorno: 	'Informação não encontrada.'};
+							console.log($scope.msg);
 					 }
 			});
+			
 		} else if(value==='CNPJ'){
+			
+			var repFinal = $scope.enviopesquisa.data.replace(/\D/g,'');
+			
+			$scope.enviopesquisa.data = repFinal;
+			
 			$http.get('/pesquisar/cnpj',$scope.enviopesquisa).success(function(retorno)
 			{
 				if(retorno){ 
@@ -34,6 +44,11 @@ angular.module('mdPesquisar',["formatCpf","formatCnpj"])
 					 }
 			});			
 		} else if(value==='Nome'){
+			
+			var repFinal = $scope.enviopesquisa.data.replace(/[0-9]/g,'');
+			
+			$scope.enviopesquisa.data = repFinal;
+			
 			$http.get('/pesquisar/nome',$scope.enviopesquisa).success(function(retorno)
 			{
 				if(retorno){ 
