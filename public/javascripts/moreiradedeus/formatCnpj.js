@@ -47,18 +47,17 @@ mdAppCNPJ.filter('cnpj', function () {
             return cnpj;
         }
 
-        var number3first, numberlast;
+        var number2first, numberlast;
 
         switch (value.length) {
             case 1:
             case 2:
-            case 3:
-                number3first 	= value;
+                number2first 	= value;
                 break;
 
             default:
-                number3first 	= value.slice(0, 3);
-                numberlast 		= value.slice(3);
+                number2first 	= value.slice(0, 2);
+                numberlast 		= value.slice(2);
         }
 
         if(numberlast){
@@ -69,10 +68,10 @@ mdAppCNPJ.filter('cnpj', function () {
                 numberlast = numberlast;
             }
 
-            return (number3first + '.' + numberlast).trim();
+            return (number2first + '.' + numberlast).trim();
         }
         else{
-            return number3first;
+            return number2first;
         }
 
     };

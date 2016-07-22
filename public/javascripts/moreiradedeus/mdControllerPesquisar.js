@@ -1,7 +1,9 @@
-angular.module('mdPesquisar',["formatCpf","formatCnpj"])
+'use strict'
+
+angular.module('mdPesquisar',["formatCpf","formatCnpj","formatNome"])
 .controller('mdControllerPesquisa', function($scope,$http,$window) {
 	
-	$scope.enviarpesquisa = function(value){
+	$scope.enviarpesquisa = function(value) {
 		
 		$scope.enviopesquisa.location = {lat: latitude, lng: longitude};
 		
@@ -15,18 +17,7 @@ angular.module('mdPesquisar',["formatCpf","formatCnpj"])
 			
 			console.log($scope.enviopesquisa);
 			
-			$http({	url: '/pesquisar/cpf',
-        			method: "GET",
-        			params: { 	data	: $scope.enviopesquisa.data,
-								situacao: $scope.enviopesquisa.situacao,
-							 	lat		: $scope.enviopesquisa.location.lat,
-							 	lng		: $scope.enviopesquisa.location.lng
-							}
-    			}).then(function mySucces(retorno) {
-        					console.log(retorno);
-    			}, function myError(response) {
-        				console.log(retorno);
-    			});
+			restFind('/pesquisar/cpf', $scope.enviopesquisa.data, $scope.enviopesquisa.situacao, $scope.enviopesquisa.location.lat, $scope.enviopesquisa.location.lng);
 			
 		} else if(value==='CNPJ'){
 			
@@ -34,51 +25,61 @@ angular.module('mdPesquisar',["formatCpf","formatCnpj"])
 			
 			$scope.enviopesquisa.data = repFinal;
 			
-			$http.post('/pesquisar/cnpj',$scope.enviopesquisa).success(function(retorno)
-			{
-				if(retorno){ 
-							console.log(retorno);
-							}
-				else {
-							$scope.msg = {	show: 		true,
-											retorno};
-					 }
-			});			
+			restFind('/pesquisar/cnpj', $scope.enviopesquisa.data, $scope.enviopesquisa.situacao, $scope.enviopesquisa.location.lat, $scope.enviopesquisa.location.lng);
+			
 		} else if(value==='Nome'){
 			
 			var repFinal = $scope.enviopesquisa.data.replace(/[0-9]/g,'');
 			
 			$scope.enviopesquisa.data = repFinal;
 			
-			$http.post('/pesquisar/nome',$scope.enviopesquisa).success(function(retorno)
-			{
-				if(retorno){ 
-							console.log(retorno);
-							}
-				else {
-							$scope.msg = {	show: 		true,
-											retorno};
-					 }
-			});			
+			restFind('/pesquisar/nome', $scope.enviopesquisa.data, $scope.enviopesquisa.situacao, $scope.enviopesquisa.location.lat, $scope.enviopesquisa.location.lng);
+			
 		};
 		
 	};
 	
-	$scope.zerarData = function(){
-
-		$scope.enviopesquisa = { data:		'',
-								 location: 	{lat: latitude, lng: longitude},
-					   			 situacao: 	situacaoGPS};
-
+	$scope.zerarData = function() { $scope.enviopesquisa = {data:		'',
+									location: 	{lat: latitude, lng: longitude},
+					   			 	situacao: 	situacaoGPS};
+								  };
+	
+	$scope.zerarRetorno = function() { $scope.dadosretorno = {	nome			: '',
+															    datanascimento	: '',
+							  									datacadastro	: '',
+							  									atosregistrado	: [],
+							  									cpf				: ''};
+									 };
+	
+	$scope.zerarEscolha = function() {
+		$scope.zerarData();
+		$scope.zerarRetorno();
+		$scope.esconder = true;
 	};
 	
-    var initFind = function(){
-        
+    var initFind = function() { 
         navigator.geolocation.getCurrentPosition(geoSuccess,geoError,geoOptions);
-		
-		$scope.zerarData();
+		$scope.zerarEscolha();
     };
-    
-    initFind();	
+	
+	var objRetorno = function(nome, datanascimento, datacadastro, atosregistrado, cpfcnpj) {
+		$scope.dadosretorno = {	nome, datanascimento, datacadastro, atosregistrado, cpfcnpj};		
+	};
+	
+	var restFind = function(Url, data, situacao, lat, lng) {
+    	$http({	url: Url,
+        		method: "GET",
+        		params: {data, situacao, lat, lng}
+    			}).then(function mySucces(retorno) {
+        					console.log(retorno);
+							$scope.zerarData();
+							$scope.esconder = false;
+							objRetorno(retorno.data.nome, retorno.data.datanascimento, retorno.data.datacadastro, retorno.data.atosregistrado, retorno.data.cpfcnpj);
+    			}, function myError(retorno) {
+        				console.log(retorno);
+    			});
+	};
+						
+	initFind();	
 	
 });

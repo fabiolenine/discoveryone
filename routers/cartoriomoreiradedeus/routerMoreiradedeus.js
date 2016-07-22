@@ -24,14 +24,14 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 			dbpesquisar.cpf(Cpf, function(retorno){
 				res.send(retorno);
 			});	
-		}
+		};
 	});
 	
-	app.post('/pesquisar/cnpj', function(req, res){
-		var Cnpj				= req.body.data;
-		var Loc                 = req.body.location.lng;
-        var Lat                 = req.body.location.lat;
-		var Situacao			= req.body.situacao;
+	app.get('/pesquisar/cnpj', function(req, res){
+		var Cnpj				= req.query.data;
+		var Loc                 = req.query.lng;
+        var Lat                 = req.query.lat;
+		var Situacao			= req.query.situacao;
 		
 		if (!isCNPJ(Cnpj)){
 			res.send('O CNPJ informado é invalido...');
@@ -40,14 +40,14 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 			dbpesquisar.cnpj(Cnpj, function(retorno){
 				res.send(retorno);
 			});	
-		}
+		};
 	});
 	
-	app.post('/pesquisar/nome', function(req, res){
-		var Nome				= req.body.data;
-		var Loc                 = req.body.location.lng;
-        var Lat                 = req.body.location.lat;
-		var Situacao			= req.body.situacao;
+	app.get('/pesquisar/nome', function(req, res){
+		var Nome				= req.query.data;
+		var Loc                 = req.query.lng;
+        var Lat                 = req.query.lat;
+		var Situacao			= req.query.situacao;
 		
 		if (!isNOME(Nome)){
 			res.send('O nome informado é invalido...');
@@ -56,7 +56,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 			dbpesquisar.nome(Nome, function(retorno){
 				res.send(retorno);
 			});	
-		}
+		};
 	});
 	
 	app.post('/contato/email', function(req, res){
