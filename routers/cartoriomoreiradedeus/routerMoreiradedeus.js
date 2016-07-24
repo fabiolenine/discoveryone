@@ -5,7 +5,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 	var isCPF 	= require('../../modulos/common/quarks/isCpf.js');
 	var isCNPJ	= require('../../modulos/common/quarks/isCnpj.js');
 	var isNOME	= require('../../modulos/common/quarks/isNome.js');
-	var isMAIL	= require('../../modulos/common/quarks/isEmail.js');
+	var isEMAIL	= require('../../modulos/common/quarks/isEmail.js');
 	
 	app.get('/', function(req, res){
 		res.render('index.ejs');
