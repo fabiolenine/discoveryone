@@ -70,6 +70,7 @@ const sendgridmails				= require('./modulos/common/sendgridEmail.js')(sendgrid, 
 const detalheemailsmd			= require('./modulos/cartoriomoreiradedeus/detalheEmails.js')(sendgridmails);
 const dbcontatosite				= require('./modulos/cartoriomoreiradedeus/dbContatoSite.js')(mongoose);
 const dbpesquisar				= require('./modulos/cartoriomoreiradedeus/dbPesquisar.js')(mongoose);
+const dbdadospesquisa			= require('./modulos/cartoriomoreiradedeus/dbDadosPesquisa.js')(mongoose);
 const detalheemailslenines		= require('./modulos/lenines/detalheEmails.js')(sendgridmails);
 
 
@@ -97,7 +98,7 @@ const detalheemailslenines		= require('./modulos/lenines/detalheEmails.js')(send
 require('./routers/lenines/routerLenines.js')(app, detalheemailslenines);
 require('./routers/volatilechat/routerVolatilechat.js')(appVolatilechat);
 require('./routers/sequence/routerSequence.js')(appSequence);
-require('./routers/cartoriomoreiradedeus/routerMoreiradedeus.js')(appMoreiradedeus, detalheemailsmd, dbcontatosite, dbpesquisar);
+require('./routers/cartoriomoreiradedeus/routerMoreiradedeus.js')(appMoreiradedeus, detalheemailsmd, dbcontatosite, dbpesquisar, dbdadospesquisa);
 
 // Conexão com socket.io
 io.on('connection', socket);

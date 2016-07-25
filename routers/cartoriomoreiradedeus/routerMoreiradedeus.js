@@ -1,5 +1,5 @@
 // Rota dos sites Cartório Moreira de Deus
-module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
+module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospesquisa)
 {
 			 
 	var isCPF 	= require('../../modulos/common/quarks/isCpf.js');
@@ -21,6 +21,10 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 			res.send('O CPF informado é invalido...');
 		}
 		else {
+			dbdadospesquisa.salvar(Cpf, Lat, Loc, Situacao, function(retorno) {
+				console.log(retorno);
+			});
+			
 			dbpesquisar.cpf(Cpf, function(retorno){
 				res.send(retorno);
 			});	
@@ -37,6 +41,10 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 			res.send('O CNPJ informado é invalido...');
 		}
 		else {
+			dbdadospesquisa.salvar(Cnpj, Lat, Loc, Situacao, function(retorno) {
+				console.log(retorno);
+			});
+			
 			dbpesquisar.cnpj(Cnpj, function(retorno){
 				res.send(retorno);
 			});	
@@ -53,9 +61,13 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar)
 			res.send('O nome informado é invalido...');
 		}
 		else {
+			dbdadospesquisa.salvar(Nome, Lat, Loc, Situacao, function(retorno) {
+				console.log(retorno);
+			});
+			
 			dbpesquisar.nome(Nome, function(retorno){
 				res.send(retorno);
-			});	
+			});
 		};
 	});
 	

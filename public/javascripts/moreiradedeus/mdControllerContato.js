@@ -1,5 +1,5 @@
 angular.module("mdMain",["formatTel"])
-.controller('mdControllerContato', function($scope,$http,$window) {
+.controller('mdControllerContato', function($scope,$http,$window,$location) {
 		
 	$scope.enviarcontato = function(){
         
@@ -39,6 +39,10 @@ angular.module("mdMain",["formatTel"])
 		
 		$scope.zerar();
     };
+	
+	$scope.ProdutosLink = function(path) {
+  		$window.location.href = path;
+	};
     
     init();	
 	
