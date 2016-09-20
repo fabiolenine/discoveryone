@@ -154,6 +154,10 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 	app.get('/servicos/escriturapublica(.html)?', function(req, res){
 		res.render('servicos/escriturapublica.ejs');
 	});
+	
+	app.get('/servicos/apostiladehaia(.html)?', function(req, res){
+		res.render('servicos/apostiladehaia.ejs');
+	});
 
 	app.get('/ocartorio(.html)?', function(req, res){
 		res.render('ocartorio.ejs');
