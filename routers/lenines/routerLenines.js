@@ -2,8 +2,6 @@
 
 module.exports = function(app,detalheemails)
 {
-
-	require 
 	
 	app.get('/', function(req, res){
     	res.render('index.ejs');

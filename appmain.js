@@ -9,6 +9,8 @@ const sendgridEMAIL		= new sendgrid.Email();
 const socket  			= require('./public/javascripts/volatilechat/socket.js');
 const mongoose      	= require('mongoose');
 const configmongoose	= require('./config/cartoriomoreiradedeus/configmongoose.js');
+const cfgTwitter 		= require('./config/tellbuzz/config.json');
+const tw 				= require('node-tweet-stream')(cfgTwitter);
 
 // Conexão com o mongoose
 
@@ -37,13 +39,18 @@ mongoose.connection.once('open', function()
         console.log('database '+configmongoose.DATABASE+' está agora aberto em '+configmongoose.HOST );
         });
 
+// Conexão com socket.io
+io.on('connection', function (socket) {
+		socket.on('disconnect', function(){ });
+});
 
 // Roteamento de domínio e sub-domínios
-const app                         = express();
-const appVolatilechat             = express();
-const appSequence                 = express();
-const appMoreiradedeus            = express();
-//const appMDAPPS					  = express();
+const app				= express();
+const appVolatilechat	= express();
+const appSequence		= express();
+const appMoreiradedeus	= express();
+const appTellbuzz		= express();
+//const appMDAPPS		= express();
 
 app.use(bodyParser.json());							//for parsing application/json
 app.use(bodyParser.urlencoded({extended: true}));	// for parsing application/x-www-form-urlencoded
@@ -51,6 +58,7 @@ app.use(bodyParser.urlencoded({extended: true}));	// for parsing application/x-w
 app.use(vhost('www.volatilechat.com',appVolatilechat));
 app.use(vhost('volatilechat.com',appVolatilechat));
 app.use(vhost('sequence.lenines.com',appSequence));
+app.use(vhost('tellbuzz.lenines.info',appTellbuzz));
 app.use(vhost('www.cartoriomoreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('www.cartoriomoreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('www.moreiradedeus.com.br',appMoreiradedeus));
@@ -72,7 +80,7 @@ const dbcontatosite				= require('./modulos/cartoriomoreiradedeus/dbContatoSite.
 const dbpesquisar				= require('./modulos/cartoriomoreiradedeus/dbPesquisar.js')(mongoose);
 const dbdadospesquisa			= require('./modulos/cartoriomoreiradedeus/dbDadosPesquisa.js')(mongoose);
 const detalheemailslenines		= require('./modulos/lenines/detalheEmails.js')(sendgridmails);
-
+const tracktwitter				= require('./modulos/tellbuzz/trackTwitter.js')(tw, io);
 
 // Parametrização dos caminhos estaticos public e de views
 	appMoreiradedeus.use(express.static('public/moreiradedeus'));
@@ -95,10 +103,8 @@ const detalheemailslenines		= require('./modulos/lenines/detalheEmails.js')(send
 	appVolatilechat.set('views','views/volatilechat');
 
 // Roteamentos
+require('./routers/tellbuzz/routerTellbuzz.js')(appTellbuzz);
 require('./routers/lenines/routerLenines.js')(app, detalheemailslenines);
 require('./routers/volatilechat/routerVolatilechat.js')(appVolatilechat);
 require('./routers/sequence/routerSequence.js')(appSequence);
 require('./routers/cartoriomoreiradedeus/routerMoreiradedeus.js')(appMoreiradedeus, detalheemailsmd, dbcontatosite, dbpesquisar, dbdadospesquisa);
-
-// Conexão com socket.io
-io.on('connection', socket);

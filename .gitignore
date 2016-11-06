@@ -14,3 +14,5 @@ config/cartoriomoreiradedeus/apikey_sendgrid.js
 config/mdapps/mdsearchKey.json
 
 config/cartoriomoreiradedeus/configmongoose.js
+
+config/tellbuzz/config.json
