@@ -1,7 +1,8 @@
 const express 			= require('express');
-const bodyParser		= require('body-parser');
-const http    			= require('http')
+const app				= express();
+const http    			= require('http').createServer(app);
 const io      			= require('socket.io')(http);
+const bodyParser		= require('body-parser');
 const vhost   			= require('vhost');
 const sendgridAPIKEy	= require('./config/cartoriomoreiradedeus/apikeySendgrid.js');
 const sendgrid			= require('sendgrid')(sendgridAPIKEy);
@@ -45,7 +46,6 @@ io.on('connection', function (socket) {
 });
 
 // Roteamento de domínio e sub-domínios
-const app				= express();
 const appMoreiradedeus	= express();
 const appTellbuzz		= express();
 //const appMDAPPS		= express();
