@@ -6,11 +6,11 @@ const vhost   			= require('vhost');
 const sendgridAPIKEy	= require('./config/cartoriomoreiradedeus/apikeySendgrid.js');
 const sendgrid			= require('sendgrid')(sendgridAPIKEy);
 const sendgridEMAIL		= new sendgrid.Email();
-const socket  			= require('./public/javascripts/volatilechat/socket.js');
 const mongoose      	= require('mongoose');
 const configmongoose	= require('./config/cartoriomoreiradedeus/configmongoose.js');
 const cfgTwitter 		= require('./config/tellbuzz/config.js');
 const tw 				= require('node-tweet-stream')(cfgTwitter);
+//const socket  			= require('./public/javascripts/volatilechat/socket.js');
 
 // Conexão com o mongoose
 
@@ -46,24 +46,24 @@ io.on('connection', function (socket) {
 
 // Roteamento de domínio e sub-domínios
 const app				= express();
-const appVolatilechat	= express();
-const appSequence		= express();
 const appMoreiradedeus	= express();
 const appTellbuzz		= express();
 //const appMDAPPS		= express();
+//const appVolatilechat	= express();
+//const appSequence		= express();
 
 app.use(bodyParser.json());							//for parsing application/json
 app.use(bodyParser.urlencoded({extended: true}));	// for parsing application/x-www-form-urlencoded
 
-app.use(vhost('www.volatilechat.com',appVolatilechat));
-app.use(vhost('volatilechat.com',appVolatilechat));
-app.use(vhost('sequence.lenines.com',appSequence));
+//app.use(vhost('www.volatilechat.com',appVolatilechat));
+//app.use(vhost('volatilechat.com',appVolatilechat));
+//app.use(vhost('sequence.lenines.com',appSequence));
+//app.use(vhost('apps.cartoriomoreiradedeus.not.br',appMDAPPS));
 app.use(vhost('tellbuzz.lenines.info',appTellbuzz));
 app.use(vhost('www.cartoriomoreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('www.cartoriomoreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('www.moreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('www.moreiradedeus.not.br',appMoreiradedeus));	
-//app.use(vhost('apps.cartoriomoreiradedeus.not.br',appMDAPPS));
 app.use(vhost('cartoriomoreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('cartoriomoreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('moreiradedeus.com.br',appMoreiradedeus));
@@ -93,14 +93,14 @@ const tracktwitter				= require('./modulos/tellbuzz/trackTwitter.js')(tw, io);
 	app.set('views','views/lenines');
 
 // Parametrização dos caminhos estaticos public e de views
-	appSequence.use(express.static('public/sequence'));
-	appSequence.set('view engine','ejs');
-	appSequence.set('views','views/sequence');
+//	appSequence.use(express.static('public/sequence'));
+//	appSequence.set('view engine','ejs');
+//	appSequence.set('views','views/sequence');
 
 // Parametrização dos caminhos estaticos public e de views
-	appVolatilechat.use(express.static('public/volatilechat'));
-	appVolatilechat.set('view engine','ejs');
-	appVolatilechat.set('views','views/volatilechat');
+//	appVolatilechat.use(express.static('public/volatilechat'));
+//	appVolatilechat.set('view engine','ejs');
+//	appVolatilechat.set('views','views/volatilechat');
 
 // Parametrização dos caminhos estaticos public e de views
 	appTellbuzz.use(express.static('public/tellbuzz'));
@@ -108,8 +108,8 @@ const tracktwitter				= require('./modulos/tellbuzz/trackTwitter.js')(tw, io);
 	appTellbuzz.set('views','views/tellbuzz');
 
 // Roteamentos
+//require('./routers/volatilechat/routerVolatilechat.js')(appVolatilechat);
+//require('./routers/sequence/routerSequence.js')(appSequence);
 require('./routers/tellbuzz/routerTellbuzz.js')(appTellbuzz);
 require('./routers/lenines/routerLenines.js')(app, detalheemailslenines);
-require('./routers/volatilechat/routerVolatilechat.js')(appVolatilechat);
-require('./routers/sequence/routerSequence.js')(appSequence);
 require('./routers/cartoriomoreiradedeus/routerMoreiradedeus.js')(appMoreiradedeus, detalheemailsmd, dbcontatosite, dbpesquisar, dbdadospesquisa);

@@ -1,11 +1,11 @@
-module.exports = function(tw, io)
+module.exports = function(tw, socket)
 {
 		
-	tw.track('veja');
-	tw.track('lava-jato');
+	tw.track('Lula');
+	tw.track('Michel Temer');
 	tw.on('tweet', function(tweet){
 		console.log(tweet);
-		io.emit('tweet', tweet);
+		socket.emit('buzz', tweet);
 	});
 	
 }
