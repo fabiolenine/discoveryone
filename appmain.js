@@ -41,6 +41,7 @@ mongoose.connection.once('open', function()
         });
 
 // Conexão com socket.io
+io.listen(8080);
 io.on('connection', function (socket) {
 		socket.on('disconnect', function(){ });
 });
