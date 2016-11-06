@@ -20,3 +20,5 @@ config/tellbuzz/config.json
 views/tellbuzz/index.ejs
 
 views/tellbuzz/index.ejs
+
+config/tellbuzz/config.js

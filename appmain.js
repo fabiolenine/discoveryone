@@ -102,6 +102,11 @@ const tracktwitter				= require('./modulos/tellbuzz/trackTwitter.js')(tw, io);
 	appVolatilechat.set('view engine','ejs');
 	appVolatilechat.set('views','views/volatilechat');
 
+// Parametrização dos caminhos estaticos public e de views
+	appTellbuzz.use(express.static('public/tellbuzz'));
+	appTellbuzz.set('view engine','ejs');
+	appTellbuzz.set('views','views/tellbuzz');
+
 // Roteamentos
 require('./routers/tellbuzz/routerTellbuzz.js')(appTellbuzz);
 require('./routers/lenines/routerLenines.js')(app, detalheemailslenines);
