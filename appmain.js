@@ -9,7 +9,7 @@ const sendgridEMAIL		= new sendgrid.Email();
 const socket  			= require('./public/javascripts/volatilechat/socket.js');
 const mongoose      	= require('mongoose');
 const configmongoose	= require('./config/cartoriomoreiradedeus/configmongoose.js');
-const cfgTwitter 		= require('./config/tellbuzz/config.json');
+const cfgTwitter 		= require('./config/tellbuzz/config.js');
 const tw 				= require('node-tweet-stream')(cfgTwitter);
 
 // Conexão com o mongoose
