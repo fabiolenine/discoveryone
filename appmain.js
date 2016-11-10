@@ -73,7 +73,7 @@ const dbcontatosite				= require('./modulos/cartoriomoreiradedeus/dbContatoSite.
 const dbpesquisar				= require('./modulos/cartoriomoreiradedeus/dbPesquisar.js')(mongoose);
 const dbdadospesquisa			= require('./modulos/cartoriomoreiradedeus/dbDadosPesquisa.js')(mongoose);
 const detalheemailslenines		= require('./modulos/lenines/detalheEmails.js')(sendgridmails);
-const parserRSS					= require('./modulos/parserRSS.js')(request,xml2js);
+const parserRSS					= require('./modulos/tellbuzz/parserRSS.js')(request,xml2js);
 
 // Parametrização dos caminhos estaticos public e de views
 	appMoreiradedeus.use(express.static('public/moreiradedeus'));
