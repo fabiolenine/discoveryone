@@ -22,3 +22,7 @@ views/tellbuzz/index.ejs
 views/tellbuzz/index.ejs
 
 config/tellbuzz/config.js
+
+views/tellbuzz/
+
+views/.DS_Store

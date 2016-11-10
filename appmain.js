@@ -1,7 +1,6 @@
 const express 			= require('express');
 const app				= express();
 const http    			= require('http').createServer(app);
-const io      			= require('socket.io')(http);
 const bodyParser		= require('body-parser');
 const vhost   			= require('vhost');
 const sendgridAPIKEy	= require('./config/cartoriomoreiradedeus/apikeySendgrid.js');
@@ -9,9 +8,8 @@ const sendgrid			= require('sendgrid')(sendgridAPIKEy);
 const sendgridEMAIL		= new sendgrid.Email();
 const mongoose      	= require('mongoose');
 const configmongoose	= require('./config/cartoriomoreiradedeus/configmongoose.js');
-const cfgTwitter 		= require('./config/tellbuzz/config.js');
-const tw 				= require('node-tweet-stream')(cfgTwitter);
-//const socket  			= require('./public/javascripts/volatilechat/socket.js');
+const request			= require('request');
+const xml2js 			= require('xml2js');
 
 // Conexão com o mongoose
 
@@ -39,12 +37,6 @@ mongoose.connection.once('open', function()
         {
         console.log('database '+configmongoose.DATABASE+' está agora aberto em '+configmongoose.HOST );
         });
-
-// Conexão com socket.io
-io.listen(8080);
-io.on('connection', function (socket) {
-		socket.on('disconnect', function(){ });
-});
 
 // Roteamento de domínio e sub-domínios
 const appMoreiradedeus	= express();
@@ -81,7 +73,7 @@ const dbcontatosite				= require('./modulos/cartoriomoreiradedeus/dbContatoSite.
 const dbpesquisar				= require('./modulos/cartoriomoreiradedeus/dbPesquisar.js')(mongoose);
 const dbdadospesquisa			= require('./modulos/cartoriomoreiradedeus/dbDadosPesquisa.js')(mongoose);
 const detalheemailslenines		= require('./modulos/lenines/detalheEmails.js')(sendgridmails);
-const tracktwitter				= require('./modulos/tellbuzz/trackTwitter.js')(tw, io);
+const parserRSS					= require('./modulos/parserRSS.js')(request,xml2js);
 
 // Parametrização dos caminhos estaticos public e de views
 	appMoreiradedeus.use(express.static('public/moreiradedeus'));
@@ -111,6 +103,6 @@ const tracktwitter				= require('./modulos/tellbuzz/trackTwitter.js')(tw, io);
 // Roteamentos
 //require('./routers/volatilechat/routerVolatilechat.js')(appVolatilechat);
 //require('./routers/sequence/routerSequence.js')(appSequence);
-require('./routers/tellbuzz/routerTellbuzz.js')(appTellbuzz);
+require('./routers/tellbuzz/routerTellbuzz.js')(appTellbuzz, parserRSS);
 require('./routers/lenines/routerLenines.js')(app, detalheemailslenines);
 require('./routers/cartoriomoreiradedeus/routerMoreiradedeus.js')(appMoreiradedeus, detalheemailsmd, dbcontatosite, dbpesquisar, dbdadospesquisa);
