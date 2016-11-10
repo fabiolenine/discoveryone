@@ -1,12 +1,10 @@
-'use strict'
-
 module.exports = function(request, xml2js){
 
-	let parser 	= new xml2js.Parser();
-	let srcRe 	= /([^\"])+(png|jpg|gif)/;
+	var parser 	= new xml2js.Parser();
+	var srcRe 	= /([^\"])+(png|jpg|gif)/;
 	
 	var parserImgSrc = function(data) {
-		let extracao = '';
+		var extracao = '';
 		Object.getOwnPropertyNames(data).forEach(function(val, idx, array) {
 			if (data['content:encoded']!=undefined) {
   				extracao = data['content:encoded'][0];
@@ -23,9 +21,9 @@ module.exports = function(request, xml2js){
 	};
 	
 	var parserXml2Js = function(data) {
-		let objUOL = [];
+		var objUOL = [];
 		parser.parseString(data, function (err, result) {
-			let rec = result.rss.channel[0].item.length;
+			var rec = result.rss.channel[0].item.length;
 			for (var i=0; i < rec; i++) {
 				objUOL.push({	title: 			result.rss.channel[0].item[i].title[0],
 								description: 	result.rss.channel[0].item[i].description[0],
