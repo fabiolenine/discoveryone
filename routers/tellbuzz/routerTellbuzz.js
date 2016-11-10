@@ -2,7 +2,7 @@
 
 module.exports = function(app, parserRSS)
 {
-	let urlList = 'http://rss.home.uol.com.br/index.xml';
+	var urlList = 'http://rss.home.uol.com.br/index.xml';
 	
 	app.get('/', function(req, res){
     	res.render('index.ejs');
