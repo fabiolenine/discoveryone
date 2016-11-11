@@ -1,10 +1,64 @@
 angular.module("tellbuzzCTRLMain",[])
 .controller('tellbuzzControllerMain', function($scope,$http,$window,$interval,$timeout) {
-		
-	var socket = io.connect('http://162.222.177.65:8080');
+	var synth = window.speechSynthesis;
+
+	var voices = [];
 	
-	socket.on('buzz', function (dados) {
+	var socket = io.connect('162.222.177.65:3000');
+	
+	socket.on('news', function (dados) {
 		console.log(dados);
+		$scope.zerarRetorno();
+		$scope.dadosretorno = dados;
 	});
+	
+	$scope.zerarRetorno = function() { $scope.dadosretorno = {	title		: '',
+    															description	: '',
+    															link		: '',
+    															pubdate		: '',
+    															src			: '',
+    															language	: ''};
+									 };
+	
+
+	var restFind = function(Url) {
+    	$http({	url: Url,
+        		method: "GET",
+        		params: {}
+    			}).then(function mySucces(retorno) {
+        					console.log(retorno);
+							$scope.zerarRetorno();
+							$scope.dadosretorno = retorno.data;
+    			}, function myError(retorno) {
+        				console.log(retorno);
+    			});
+	};
+	
+    var initFind = function() { 
+		$scope.zerarRetorno();
+		restFind('http://tellbuzz.lenines.info/api/v001/news');
+    };
+						
+	initFind();
+	
+	$scope.voice = function(seq) {
+		console.log(seq);
+		
+		var teste = window.speechSynthesis.getVoices();
+		console.log(teste);
+		
+		var texto = 'Título: ' + $scope.dadosretorno[seq].title + ', agora vou ler a chamada: ' + $scope.dadosretorno[seq].description + ', fim da notícia.';
+
+		var voices = synth.getVoices();
+		
+		var utterThis = new SpeechSynthesisUtterance(texto);
+		utterThis.volume	= 1; // o default é o valor 1, ou seja o volume máximo.
+		utterThis.pitch 	= 1; // o default é o valor 1.
+		utterThis.rate 		= 1; // o default é o valor 1.
+		utterThis.lang		= 'pt-BR';
+		utterThis.voice		= voices[24];
+		
+		synth.speak(utterThis);
+	};
 
 });

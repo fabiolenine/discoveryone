@@ -31,7 +31,7 @@ module.exports = function(request, xml2js){
 								link:			result.rss.channel[0].item[i].link[0],
 							 	pubdate:		result.rss.channel[0].item[i].pubDate[0],
 							 	src:			parserImgSrc(result.rss.channel[0].item[i]),
-								language:		'pt-br'
+								language:		'pt-BR'
 							});
 			};
 		});
