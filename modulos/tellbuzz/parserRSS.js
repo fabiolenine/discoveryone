@@ -16,7 +16,7 @@ module.exports = function(request, xml2js){
 			return extracao[0];
 		}
 		else {
-			return '';
+			return 'https://storage.googleapis.com/discoveryone/public/images/tellbuzz/c_scale%2Cfl_progressive%2Cq_80%2Cw_800.jpg';
 		};
 	};
 	
@@ -25,7 +25,8 @@ module.exports = function(request, xml2js){
 		parser.parseString(data, function (err, result) {
 			var rec = result.rss.channel[0].item.length;
 			for (var i=0; i < rec; i++) {
-				objUOL.push({	title: 			result.rss.channel[0].item[i].title[0],
+				objUOL.push({	id:				i,
+							 	title: 			result.rss.channel[0].item[i].title[0],
 								description: 	result.rss.channel[0].item[i].description[0],
 								link:			result.rss.channel[0].item[i].link[0],
 							 	pubdate:		result.rss.channel[0].item[i].pubDate[0],
