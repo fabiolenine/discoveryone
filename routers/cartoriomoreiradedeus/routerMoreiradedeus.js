@@ -9,7 +9,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 	
 	app.get('/', function(req, res){
 		console.log(__dirname);
-		res.render('../../views/moreiradedeus/index.ejs');
+		res.render('index.ejs');
 	});
 	
 	app.get('/pesquisar/cpf', function(req, res){
