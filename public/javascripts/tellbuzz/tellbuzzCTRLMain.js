@@ -42,21 +42,19 @@ angular.module("tellbuzzCTRLMain",[])
 	initFind();
 	
 	$scope.voice = function(seq) {
-		console.log(seq);
-		
-		var teste = window.speechSynthesis.getVoices();
-		console.log(teste);
 		
 		var texto = 'Título: ' + $scope.dadosretorno[seq].title + ', agora vou ler a chamada: ' + $scope.dadosretorno[seq].description + ', fim da notícia.';
 
 		var voices = synth.getVoices();
 		
+		voices = voices.filter(function (voz) { return voz.lang == $scope.dadosretorno[seq].language });
+		
 		var utterThis = new SpeechSynthesisUtterance(texto);
 		utterThis.volume	= 1; // o default é o valor 1, ou seja o volume máximo.
 		utterThis.pitch 	= 1; // o default é o valor 1.
 		utterThis.rate 		= 1; // o default é o valor 1.
-		utterThis.lang		= 'pt-BR';
-		utterThis.voice		= voices[24];
+		utterThis.lang		= $scope.dadosretorno[seq].language;
+		utterThis.voice		= voices[0];
 		
 		synth.speak(utterThis);
 	};

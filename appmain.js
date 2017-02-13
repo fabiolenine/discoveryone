@@ -1,11 +1,13 @@
+/*jshint esversion: 6 */
+
 const express 			= require('express');
 const app				= express();
 const http    			= require('http').createServer(app);
 const bodyParser		= require('body-parser');
 const vhost   			= require('vhost');
 const sendgridAPIKEy	= require('./config/cartoriomoreiradedeus/apikeySendgrid.js');
-const sendgrid			= require('sendgrid')(sendgridAPIKEy);
-const sendgridEMAIL		= new sendgrid.Email();
+const sg				= require('sendgrid')(sendgridAPIKEy);
+const helper			= require('sendgrid').mail;
 const mongoose      	= require('mongoose');
 const configmongoose	= require('./config/cartoriomoreiradedeus/configmongoose.js');
 const request			= require('request');
@@ -33,7 +35,7 @@ mongoose.connection.on('erro: ', function(err)
 
 // connection successful event handler:
 // check if the db already contains a greeting. if not, create one and save it to the db
-mongoose.connection.once('open', function() 
+mongoose.connection.once('open', function()
         {
         console.log('database '+configmongoose.DATABASE+' está agora aberto em '+configmongoose.HOST );
         });
@@ -56,18 +58,18 @@ app.use(vhost('tellbuzz.lenines.info',appTellbuzz));
 app.use(vhost('www.cartoriomoreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('www.cartoriomoreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('www.moreiradedeus.com.br',appMoreiradedeus));
-app.use(vhost('www.moreiradedeus.not.br',appMoreiradedeus));	
+app.use(vhost('www.moreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('cartoriomoreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('cartoriomoreiradedeus.not.br',appMoreiradedeus));
 app.use(vhost('moreiradedeus.com.br',appMoreiradedeus));
 app.use(vhost('moreiradedeus.not.br',appMoreiradedeus));
 
-app.listen(80); 
+app.listen(80);
 
 //https.createServer(options, app).listen(443);
 
 //Definições dos detalhes que serão repassados as rotas para serem utilizados
-const sendgridmails				= require('./modulos/common/sendgridEmail.js')(sendgrid, sendgridEMAIL);
+const sendgridmails				= require('./modulos/common/sendgridEmail.js')(sg, helper);
 const detalheemailsmd			= require('./modulos/cartoriomoreiradedeus/detalheEmails.js')(sendgridmails);
 const dbcontatosite				= require('./modulos/cartoriomoreiradedeus/dbContatoSite.js')(mongoose);
 const dbpesquisar				= require('./modulos/cartoriomoreiradedeus/dbPesquisar.js')(mongoose);

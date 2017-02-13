@@ -26,3 +26,7 @@ config/tellbuzz/config.js
 views/tellbuzz/
 
 views/.DS_Store
+
+public/.DS_Store
+
+.DS_Store
