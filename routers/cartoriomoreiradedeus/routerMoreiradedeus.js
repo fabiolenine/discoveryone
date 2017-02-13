@@ -8,6 +8,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 	var isEMAIL	= require('../../modulos/common/quarks/isEmail.js');
 	
 	app.get('/', function(req, res){
+		console.log(__dirname);
 		res.render('index.ejs');
 	});
 	
