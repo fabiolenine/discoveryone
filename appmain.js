@@ -50,6 +50,11 @@ mongoose.connection.once('open', function()
 app.use(bodyParser.json());							//for parsing application/json
 app.use(bodyParser.urlencoded({extended: true}));	// for parsing application/x-www-form-urlencoded
 
+// Parametrização dos caminhos estaticos public e de views
+	app.use(express.static('public/moreiradedeus'));
+	app.set('view engine','ejs');
+	app.set('views','views/moreiradedeus');
+
 //app.use(vhost('www.volatilechat.com',appVolatilechat));
 //app.use(vhost('volatilechat.com',appVolatilechat));
 //app.use(vhost('sequence.lenines.com',appSequence));
@@ -77,10 +82,7 @@ const dbdadospesquisa			= require('./modulos/cartoriomoreiradedeus/dbDadosPesqui
 //const detalheemailslenines		= require('./modulos/lenines/detalheEmails.js')(sendgridmails);
 //const parserRSS					= require('./modulos/tellbuzz/parserRSS.js')(request,xml2js);
 
-// Parametrização dos caminhos estaticos public e de views
-	app.use(express.static('public/moreiradedeus'));
-	app.set('view engine','ejs');
-	app.set('views','views/moreiradedeus');
+
 
 // Parametrização dos caminhos estaticos public e de views
 //	app.use(express.static('public/lenines'));

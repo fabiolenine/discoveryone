@@ -1,7 +1,8 @@
 // Rota dos sites Cartório Moreira de Deus
 module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospesquisa)
 {
-			 
+	app.set('views','views/moreiradedeus');
+	
 	var isCPF 	= require('../../modulos/common/quarks/isCpf.js');
 	var isCNPJ	= require('../../modulos/common/quarks/isCnpj.js');
 	var isNOME	= require('../../modulos/common/quarks/isNome.js');
