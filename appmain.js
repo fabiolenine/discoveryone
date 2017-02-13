@@ -41,7 +41,7 @@ mongoose.connection.once('open', function()
         });
 
 // Roteamento de domínio e sub-domínios
-const appMoreiradedeus	= express();
+//const appMoreiradedeus	= express();
 //const appTellbuzz		= express();
 //const appMDAPPS		= express();
 //const appVolatilechat	= express();
@@ -55,14 +55,14 @@ app.use(bodyParser.urlencoded({extended: true}));	// for parsing application/x-w
 //app.use(vhost('sequence.lenines.com',appSequence));
 //app.use(vhost('apps.cartoriomoreiradedeus.not.br',appMDAPPS));
 //app.use(vhost('tellbuzz.lenines.info',appTellbuzz));
-app.use(vhost('www.cartoriomoreiradedeus.com.br',appMoreiradedeus));
-app.use(vhost('www.cartoriomoreiradedeus.not.br',appMoreiradedeus));
-app.use(vhost('www.moreiradedeus.com.br',appMoreiradedeus));
-app.use(vhost('www.moreiradedeus.not.br',appMoreiradedeus));
-app.use(vhost('cartoriomoreiradedeus.com.br',appMoreiradedeus));
-app.use(vhost('cartoriomoreiradedeus.not.br',appMoreiradedeus));
-app.use(vhost('moreiradedeus.com.br',appMoreiradedeus));
-app.use(vhost('moreiradedeus.not.br',appMoreiradedeus));
+//app.use(vhost('www.cartoriomoreiradedeus.com.br',appMoreiradedeus));
+//app.use(vhost('www.cartoriomoreiradedeus.not.br',appMoreiradedeus));
+//app.use(vhost('www.moreiradedeus.com.br',appMoreiradedeus));
+//app.use(vhost('www.moreiradedeus.not.br',appMoreiradedeus));
+//app.use(vhost('cartoriomoreiradedeus.com.br',appMoreiradedeus));
+//app.use(vhost('cartoriomoreiradedeus.not.br',appMoreiradedeus));
+//app.use(vhost('moreiradedeus.com.br',appMoreiradedeus));
+//app.use(vhost('moreiradedeus.not.br',appMoreiradedeus));
 
 app.listen(80);
 
@@ -78,9 +78,9 @@ const dbdadospesquisa			= require('./modulos/cartoriomoreiradedeus/dbDadosPesqui
 //const parserRSS					= require('./modulos/tellbuzz/parserRSS.js')(request,xml2js);
 
 // Parametrização dos caminhos estaticos public e de views
-	appMoreiradedeus.use(express.static('public/moreiradedeus'));
-	appMoreiradedeus.set('view engine','ejs');
-	appMoreiradedeus.set('views','views/moreiradedeus');
+	app.use(express.static('public/moreiradedeus'));
+	app.set('view engine','ejs');
+	app.set('views','views/moreiradedeus');
 
 // Parametrização dos caminhos estaticos public e de views
 //	app.use(express.static('public/lenines'));
@@ -107,4 +107,4 @@ const dbdadospesquisa			= require('./modulos/cartoriomoreiradedeus/dbDadosPesqui
 //require('./routers/sequence/routerSequence.js')(appSequence);
 //require('./routers/tellbuzz/routerTellbuzz.js')(appTellbuzz, parserRSS);
 //require('./routers/lenines/routerLenines.js')(app, detalheemailslenines);
-require('./routers/cartoriomoreiradedeus/routerMoreiradedeus.js')(appMoreiradedeus, detalheemailsmd, dbcontatosite, dbpesquisar, dbdadospesquisa);
+require('./routers/cartoriomoreiradedeus/routerMoreiradedeus.js')(app, detalheemailsmd, dbcontatosite, dbpesquisar, dbdadospesquisa);
