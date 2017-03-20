@@ -1,22 +1,22 @@
 // Rota dos sites Cartório Moreira de Deus
 module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospesquisa)
 {
-	
+
 	var isCPF 	= require('../../modulos/common/quarks/isCpf.js');
 	var isCNPJ	= require('../../modulos/common/quarks/isCnpj.js');
 	var isNOME	= require('../../modulos/common/quarks/isNome.js');
 	var isEMAIL	= require('../../modulos/common/quarks/isEmail.js');
-	
+
 	app.get('/', function(req, res){
 		res.render('index.ejs');
 	});
-	
+
 	app.get('/pesquisar/cpf', function(req, res){
 		var Cpf					= req.query.data;
 		var Loc                 = req.query.lng;
         var Lat                 = req.query.lat;
 		var Situacao			= req.query.situacao;
-		
+
 		if (!isCPF(Cpf)){
 			res.send('O CPF informado é invalido...');
 		}
@@ -24,19 +24,19 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 			dbdadospesquisa.salvar(Cpf, Lat, Loc, Situacao, function(retorno) {
 				console.log(retorno);
 			});
-			
+
 			dbpesquisar.cpf(Cpf, function(retorno){
 				res.send(retorno);
-			});	
+			});
 		};
 	});
-	
+
 	app.get('/pesquisar/cnpj', function(req, res){
 		var Cnpj				= req.query.data;
 		var Loc                 = req.query.lng;
         var Lat                 = req.query.lat;
 		var Situacao			= req.query.situacao;
-		
+
 		if (!isCNPJ(Cnpj)){
 			res.send('O CNPJ informado é invalido...');
 		}
@@ -44,19 +44,19 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 			dbdadospesquisa.salvar(Cnpj, Lat, Loc, Situacao, function(retorno) {
 				console.log(retorno);
 			});
-			
+
 			dbpesquisar.cnpj(Cnpj, function(retorno){
 				res.send(retorno);
-			});	
+			});
 		};
 	});
-	
+
 	app.get('/pesquisar/nome', function(req, res){
 		var Nome				= req.query.data;
 		var Loc                 = req.query.lng;
         var Lat                 = req.query.lat;
 		var Situacao			= req.query.situacao;
-		
+
 		if (!isNOME(Nome)){
 			res.send('O nome informado é invalido...');
 		}
@@ -64,13 +64,13 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 			dbdadospesquisa.salvar(Nome, Lat, Loc, Situacao, function(retorno) {
 				console.log(retorno);
 			});
-			
+
 			dbpesquisar.nome(Nome, function(retorno){
 				res.send(retorno);
 			});
 		};
 	});
-	
+
 	app.post('/contato/email', function(req, res){
         var Email               = req.body.email;
         var Mensagem            = req.body.mensagem;
@@ -80,7 +80,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
         var Loc                 = req.body.location.lng;
         var Lat                 = req.body.location.lat;
 		var Situacao			= req.body.situacao;
-		
+
         if (!isEMAIL(Email))
                 {
                     res.send(false);
@@ -91,18 +91,18 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
             {
                 res.send(retorno);
             });
-			
+
 			detalheemails.contatointerno(Nome, Email, Assunto, Telefone, Mensagem, Lat.toString(), Loc.toString(), Situacao, function(retorno)
-            {	
+            {
 				console.log(retorno);
             });
-			
+
 			dbcontatosite.salvar(Nome, Email, Assunto, Telefone, Mensagem, Lat, Loc, Situacao, function(retorno) {
 				console.log(retorno);
 			});
-        }	
+        }
 	});
-	
+
 	app.get('/servicos(.html)?', function(req, res){
 		res.render('servicos.ejs');
 	});
@@ -111,9 +111,9 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 		res.render('servicos/autenticacao.ejs');
 	});
 
-	app.get('/servicos/certificadodigital(.html)?', function(req, res){
-		res.render('servicos/certificadodigital.ejs');
-	});
+	// app.get('/servicos/certificadodigital(.html)?', function(req, res){
+	// 	res.render('servicos/certificadodigital.ejs');
+	// });
 
 	app.get('/servicos/conciliacao(.html)?', function(req, res){
 		res.render('servicos/conciliacao.ejs');
@@ -154,7 +154,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 	app.get('/servicos/escriturapublica(.html)?', function(req, res){
 		res.render('servicos/escriturapublica.ejs');
 	});
-	
+
 	app.get('/servicos/apostiladehaia(.html)?', function(req, res){
 		res.render('servicos/apostiladehaia.ejs');
 	});
@@ -166,10 +166,10 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 	app.get('/produtos(.html)?', function(req, res){
 		res.render('produtos.ejs');
 	});
-	
+
 	app.get('/produtos/pesquisar(.html)?', function(req, res){
 		res.render('produtos/pesquisar.ejs');
-	});	
+	});
 
 	app.get('/reputacao(.html)?', function(req, res){
 		res.render('reputacao.ejs');
@@ -206,7 +206,7 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 	app.get('/sitemap-w3not.xml', function(req, res){
 		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-w3not.xml');
 	});
-	
+
 	// Tratamentos dos erros 404 e 500
 	app.use(function(req, res, next) {
   		res.status(404).render('404.ejs');
