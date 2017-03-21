@@ -176,35 +176,35 @@ module.exports = function(app,detalheemails,dbcontatosite,dbpesquisar,dbdadospes
 	});
 
 	app.get('/sitemap-cartcom.xml', function(req, res){
-		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-cartcom.xml');
+		res.download('/home/discoveryone/views/moreiradedeus/sitemap-cartcom.xml');
 	});
 
 	app.get('/sitemap-cartnot.xml', function(req, res){
-		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-cartnot.xml');
+		res.download('/home/discoveryone/views/moreiradedeus/sitemap-cartnot.xml');
 	});
 
 	app.get('/sitemap-com.xml', function(req, res){
-		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-com.xml');
+		res.download('/home/discoveryone/views/moreiradedeus/sitemap-com.xml');
 	});
 
 	app.get('/sitemap-not.xml', function(req, res){
-		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-not.xml');
+		res.download('/home/discoveryone/views/moreiradedeus/sitemap-not.xml');
 	});
 
 	app.get('/sitemap-w3cartcom.xml', function(req, res){
-		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-w3cartcom.xml');
+		res.download('/home/discoveryone/views/moreiradedeus/sitemap-w3cartcom.xml');
 	});
 
 	app.get('/sitemap-w3cartnot.xml', function(req, res){
-		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-w3cartnot.xml');
+		res.download('/home/discoveryone/views/moreiradedeus/sitemap-w3cartnot.xml');
 	});
 
 	app.get('/sitemap-w3com.xml', function(req, res){
-		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-w3com.xml');
+		res.download('/home/discoveryone/views/moreiradedeus/sitemap-w3com.xml');
 	});
 
 	app.get('/sitemap-w3not.xml', function(req, res){
-		res.download('/home/fabiolenine_gmail_com/discoveryone/views/moreiradedeus/sitemap-w3not.xml');
+		res.download('/home/discoveryone/views/moreiradedeus/sitemap-w3not.xml');
 	});
 
 	// Tratamentos dos erros 404 e 500
